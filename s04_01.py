@@ -8,7 +8,7 @@ import sys
 parser = argparse.ArgumentParser(description='plotting f(x)')
 # add argument
 parser.add_argument ('-o', '--output', default='output.png', help='output file name (default: output.png)')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, help='resolution of plot in DPI (default: 225.0)')
+parser.add_argument ('-r', '--resolution', type=float, default=250.0, help='resolution of plot in DPI (default: 250.0)')
 args = parser.parse_args()
 
 file_output = args.output
@@ -40,8 +40,8 @@ ax.set_xlim(-0.5, 0.5)
 ax.set_ylim(-0.5, 0.5)
 ax.set_xlabel('$x$')
 ax.set_ylabel('$y$')
-ax.set_xticks(numpy.linspace(-0.5, 0.5, 11))
-ax.set_yticks(numpy.linspace(-0.5, 0.5, 11))
+ax.set_xticks(numpy.linspace(-0.5, 0.5, 101))
+ax.set_yticks(numpy.linspace(-0.5, 0.5, 101))
 ax.grid()
 ax.legend()
 
