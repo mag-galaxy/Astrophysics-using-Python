@@ -41,7 +41,7 @@ ax.set_ylim(-0.5, 0.5)
 ax.set_xlabel('$x$')
 ax.set_ylabel('$y$')
 ax.set_xticks(numpy.linspace(-0.5, 0.5, 11))
-ax.set_yticks(numpy.linspace(-0.5, 0.5, 9))
+ax.set_yticks(numpy.linspace(-0.5, 0.5, 11))
 ax.grid()
 ax.legend()
 
