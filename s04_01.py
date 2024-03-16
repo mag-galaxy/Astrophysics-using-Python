@@ -1,4 +1,5 @@
-import matplotlib
+import matplotlib.backends.backend_agg
+import matplotlib.figure
 import numpy
 import argparse
 import pathlib
