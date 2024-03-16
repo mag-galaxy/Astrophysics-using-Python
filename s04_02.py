@@ -30,3 +30,5 @@ if not((path_output.suffix == '.eps')\
        or(path_output.suffix == '.ps')):
     print (f'ERROR: output file must be either EPS or PDF or PNG or PS file.')
     sys.exit(0)
+
+# data
