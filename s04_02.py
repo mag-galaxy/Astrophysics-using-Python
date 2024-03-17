@@ -45,7 +45,7 @@ ax = fig.add_subplot(111)
 ax.plot(data_x, data_y, color = 'green', linestyle = '--',\
         linewidth = 5, label = 'normal distribution')
 ax.set_xlim(-5, 5)
-ax.set_ylim(0.0, 0.6)
+ax.set_ylim(0.0, 0.5)
 ax.set_xlabel('$z-score$')
 ax.set_ylabel('$probability density$')
 ax.set_xticks(numpy.linspace(-5, 5, 11))
