@@ -47,9 +47,8 @@ ax.plot(data_x, data_y, color = 'green', linestyle = '--',\
 ax.set_xlim(-5, 5)
 ax.set_ylim(0.0, 0.5)
 ax.set_xlabel('$z-score$')
-ax.set_ylabel('$probability density$')
+ax.set_ylabel('$probability$ $density$')
 ax.set_xticks(numpy.linspace(-5, 5, 11))
-# ax.set_yticks(numpy.linspace(0.0, 1.0, 11))
 ax.grid()
 ax.legend()
 
