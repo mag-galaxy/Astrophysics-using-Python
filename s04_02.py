@@ -43,7 +43,7 @@ ax = fig.add_subplot(111)
 
 # plot
 ax.plot(data_x, data_y, color = 'green', linestyle = '--',\
-        linewidth = 5, label = 'normal distribution')
+        linewidth = 5, label = 'standard normal distribution')
 ax.set_xlim(-5, 5)
 ax.set_ylim(0.0, 0.5)
 ax.set_xlabel('$z-score$')
