@@ -32,9 +32,9 @@ if not((path_output.suffix == '.eps')\
 
 # data
 mu = 0 # mean
-sigma = 1 # 
+sigma = 1 # standard deviation
 data_x = numpy.linspace(-5, 5, 10000)
-data_y = 
+data_y = 1 / ((2*numpy.pi)**(1/2) * sigma * numpy.exp((-1/2)*(((data_x-mu)/sigma)**2)))
 
 # figure,anvas,axes object
 fig = matplotlib.figure.Figure()
