@@ -31,8 +31,10 @@ if not((path_output.suffix == '.eps')\
     sys.exit(0)
 
 # data
-data_x = numpy.random.standard_normal()
-data_y
+mu = 0 # mean
+sigma = 1 # 
+data_x = numpy.linspace(-5, 5, 10000)
+data_y = 
 
 # figure,anvas,axes object
 fig = matplotlib.figure.Figure()
