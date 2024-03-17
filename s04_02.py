@@ -34,7 +34,7 @@ if not((path_output.suffix == '.eps')\
 mu = 0 # mean
 sigma = 1 # standard deviation
 data_x = numpy.linspace(-5, 5, 10000)
-data_y = 1 / ((2*numpy.pi)**(1/2) * sigma * numpy.exp((-1/2)*(((data_x-mu)/sigma)**2)))
+data_y = 1 / ((2*numpy.pi)**(1/2) * sigma) * numpy.exp((-1/2)*(((data_x-mu)/sigma)**2))
 
 # figure,anvas,axes object
 fig = matplotlib.figure.Figure()
@@ -49,7 +49,7 @@ ax.set_ylim(0, 5)
 ax.set_xlabel('$x$')
 ax.set_ylabel('$y$')
 ax.set_xticks(numpy.linspace(-5, 5, 11))
-ax.set_yticks(numpy.linspace(0, 5, 6))
+ax.set_yticks(numpy.linspace(0, 10, 11))
 ax.grid()
 ax.legend()
 
