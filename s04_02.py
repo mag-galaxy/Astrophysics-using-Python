@@ -45,7 +45,7 @@ ax = fig.add_subplot(111)
 ax.plot(data_x, data_y, color = 'green', linestyle = '--',\
         linewidth = 5, label = 'normal distribution')
 ax.set_xlim(-5, 5)
-ax.set_ylim(0, 5)
+ax.set_ylim(0.0, 1.0)
 ax.set_xlabel('$x$')
 ax.set_ylabel('$y$')
 ax.set_xticks(numpy.linspace(-5, 5, 11))
