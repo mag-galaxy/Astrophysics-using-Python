@@ -1,7 +1,7 @@
 import argparse
 import ssl
 import urllib.request
-parser = argparse.ArgumentParse(description = 'download data')
+parser = argparse.ArgumentParser(description = 'download data')
 parser.add_argument('url', default = '', help = 'URL of data')
 
 args = parser.parse_args()
