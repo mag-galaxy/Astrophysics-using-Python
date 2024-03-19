@@ -11,9 +11,9 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 with urllib.request.urlopen(url_data) as f_read:
   data_read = f_read.read()
-print(data_read)
-# for i in range(len(data_read)):
-#   print(data_read[i])
+all_data = data_read.split('n')
+for i in range(len(all_data)):
+   print(all_data[i])
 print(f'data number: {len(data_read)}')
 
 total = 0
