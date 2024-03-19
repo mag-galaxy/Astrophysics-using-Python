@@ -13,6 +13,7 @@ with urllib.request.urlopen(url_data) as f_read:
   data_read = f_read.read()
 print(data_read)
 print(f'data number: {len(data_read)}')
+print(f'total: {total}')
 total = 0
 for i in range(len(data_read)):
   total += data_read[i]
