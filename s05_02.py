@@ -38,10 +38,10 @@ initial_velocity = 30  # m/s
 g = scipy.constants.g  # m/s^2
 
 # variable for calculating
-dt = 0.01  # very very short time (s)
+dt = 0.0001  # very very short time (s)
 total_time = 0  # initial total time (s)
 velocity = initial_velocity  # initial v (m/s)
-position = 0  # initial position (m)
+# position = 0  # initial position (m)
 
 # store data for plotting
 t = []
@@ -49,11 +49,12 @@ v = []
 
 # numerical integration
 while velocity > 0:
+    # when v == 0, the ball is at the highest point
     acceleration = -g # go up is positive, go down is negative
 
     # update velocity and position
     velocity += acceleration * dt # delta v = a*dt
-    position += velocity * dt #delta x = v*dt
+    # position += velocity * dt #delta x = v*dt
 
     # Update total time
     total_time += dt
