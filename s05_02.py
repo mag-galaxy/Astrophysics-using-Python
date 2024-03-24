@@ -70,7 +70,7 @@ velocity_change = initial_velocity - v[-1]
 # figure, canvas, axes objects
 fig = matplotlib.figure.Figure()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
-ax = fig1.add_subplot(111)
+ax = fig.add_subplot(111)
 
 # plot v-t graph
 ax.plot(t, v)
