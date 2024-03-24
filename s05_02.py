@@ -76,7 +76,6 @@ ax.set_xlabel('Time (s)')
 ax.set_ylabel('Velocity (m/s)')
 ax.set_title('v-t relation')
 ax.grid()
-ax.legend()
 fig.savefig(file_output, dpi = g_resolution)
 
 print(f'Velocity change of the ball: {velocity_change:.2f} m/s')
