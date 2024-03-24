@@ -106,4 +106,5 @@ ax2.legend()
 fig2.savefig(file_output2, dpi = g_resolution)
 
 print(f'Velocity change of the ball: {velocity_change:.2f} m/s')
-print(f'Time to reach highest position: {total_time:.2f} seconds')
+print(f'Time for ball to reach the highest position:\
+ {total_time:.2f} s')
