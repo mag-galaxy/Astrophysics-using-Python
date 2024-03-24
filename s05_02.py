@@ -46,15 +46,14 @@ position = 0  # initial position (m)
 # store data for plotting
 t = []
 v = []
-x = []
 
 # numerical integration
 while velocity > 0:
     acceleration = -g # go up is positive, go down is negative
 
     # update velocity and position
-    velocity += acceleration * dt # delta v = a*t
-    position += velocity * dt #delta x = v*t
+    velocity += acceleration * dt # delta v = a*dt
+    position += velocity * dt #delta x = v*dt
 
     # Update total time
     total_time += dt
@@ -62,7 +61,6 @@ while velocity > 0:
     # add data to list
     t.append(total_time) 
     v.append(velocity)
-    x.append(position)
 
 # Calculate velocity change
 velocity_change = initial_velocity - v[-1]
@@ -76,6 +74,7 @@ ax = fig.add_subplot(111)
 ax.plot(t, v)
 ax.set_xlabel('Time (s)')
 ax.set_ylabel('Velocity (m/s)')
+ax.set_title('v-t relation')
 ax.grid()
 ax.legend()
 fig.savefig(file_output, dpi = g_resolution)
