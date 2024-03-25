@@ -59,7 +59,7 @@ while velocity > 0:
     v.append(velocity)
 
 # Calculate velocity change
-velocity_change = initial_velocity - v[-1]
+velocity_change = v[-1] - initial_velocity
 
 # figure, canvas, axes objects
 fig = matplotlib.figure.Figure()
