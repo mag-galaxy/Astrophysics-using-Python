@@ -47,7 +47,7 @@ velocity = initial_velocity  # initial v (m/s)
 t = []
 v = []
 
-# numerical integration
+# calculate velocity each 0.0001 sec
 while velocity > 0:
     # when v == 0, the ball is at the highest point
     # update velocity and total time
