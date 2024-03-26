@@ -7,7 +7,7 @@ parser.add_argument('-url', default = '', help = 'URL of data')
 args = parser.parse_args()
 
 link = args.url
-# ssl._create_default_https_context = ssl._create_unverified_context
+ssl._create_default_https_context = ssl._create_unverified_context
 
 with urllib.request.urlopen(link) as f_read:
   data_read = f_read.read().decode('utf-8')
@@ -18,7 +18,7 @@ print(f'data number: {len(data_read)}')
 
 total = 0
 for i in range(len(data_read)):
-  total += data_read[i]
+  total += int(data_read[i])
 print(f'total: {total}')
 mean = total/len(data_read)
 print(f'mean = {mean}')
