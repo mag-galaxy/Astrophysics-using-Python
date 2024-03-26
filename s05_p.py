@@ -14,7 +14,7 @@ with urllib.request.urlopen(link) as f_read:
 
 all_data = data_read.split('\n')
 for i in range(len(all_data)):
-   print('{i}. : {all_data[i]}')
+   print(f'{i}. : {all_data[i]}')
 print(f'data number: {len(all_data)}')
 
 total = 0
