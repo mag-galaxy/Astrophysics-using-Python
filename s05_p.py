@@ -18,7 +18,7 @@ print(f'data number: {len(data_read)}')
 
 total = 0
 for i in range(len(data_read)):
-  total += int(data_read[i])
+  total += float(data_read[i])
 print(f'total: {total}')
 mean = total/len(data_read)
 print(f'mean = {mean}')
