@@ -6,11 +6,11 @@ parser.add_argument('-url', default = '', help = 'URL of data')
 
 args = parser.parse_args()
 
-url_data = args.url
-ssl._create_default_https_context = ssl._create_unverified_context
+link = args.url
+# ssl._create_default_https_context = ssl._create_unverified_context
 
-with urllib.request.urlopen(url_data) as f_read:
-  data_read = f_read.read()
+with urllib.request.urlopen(link) as f_read:
+  data_read = f_read.read().decode('utf-8')
 all_data = data_read.split('\n')
 for i in range(len(all_data)):
    print(all_data[i])
