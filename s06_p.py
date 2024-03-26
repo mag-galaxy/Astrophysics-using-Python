@@ -14,12 +14,13 @@ with urllib.request.urlopen(link) as f_read:
 
 total_price = 0
 
+#line 8~14
 all_data = data_read.split('\n')# by line
 for i in range(len(all_data)):
   print(all_data)
 
-for i in range(8,len(all_data)):
-  item_data = all_data.split() 
+for i in range(8, 15):
+  item_data = all_data[i].split()
   total_price += int(item_data[1])*int(item_data[2])
 
 print(f'total price: {total_price}')
