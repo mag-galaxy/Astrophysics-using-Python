@@ -13,7 +13,7 @@ with urllib.request.urlopen(link) as f_read:
   data_read = f_read.read().decode('utf-8')
 
 all_data = data_read.split('\n')
-for i in range(len(all_data)):
+for i in range(len(all_data)-1):
    print(f'{i}. : {all_data[i]}')
 print(f'data number: {len(all_data)}')
 
