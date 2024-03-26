@@ -16,8 +16,6 @@ total_price = 0
 
 #line 8~14
 all_data = data_read.split('\n')# by line
-for i in range(len(all_data)):
-  print(all_data)
 
 for i in range(8, 15):
   item_data = all_data[i].split()
