@@ -34,7 +34,7 @@ with open(file_sql, 'w') as fh_sql:
       SpType = line[84:87].strip().decode('utf-8')# SpType Byte 85~87
 
       # SQL command to add data to table
-      sql_add = f'insert into bsc values ({SAO}, ' \
+      sql_add = f'insert into sao values ({SAO}, ' \
           + f'{Vmag}, ' \
           + f'"{SpType}");\n'
       fh_sql.write(sql_add)
