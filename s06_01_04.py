@@ -9,7 +9,7 @@ file_sql = 'sao.sql'
 with open(file_sql, 'w') as fh_sql:
   # SQL command to create table
   sql_table = f'create table sao (sao integer primary key,' \
-        + f'pmag real, vmag real, sptype text);\n'
+        + f'ra text, vmag real, sptype text);\n'
   fh_sql.write(sql_table)
 
   #open catalogue file
@@ -22,11 +22,16 @@ with open(file_sql, 'w') as fh_sql:
         print("ERROR: cannot extract SAO number!")
         sys.exit(1)
       
-      # Photographic Magnitude
+      # Right Ascension
       try:
-        Pmag = float(line[76:80])# Vmag Byte 81~84
+        RAh = int(line[150:152])
+        RAm = int(line[152:154])
+        RAs = float(line[154:160])
       except:
-        Pmag = -999 # an impossible value
+        RAh = 99
+        RAh = 99
+        RAh = 99.9
+      RA = f'{RAh:02d}:{RAm:02d}:{RAs:04.1f}'
         
       # Visual Magnitude
       try:
@@ -39,5 +44,5 @@ with open(file_sql, 'w') as fh_sql:
 
       # SQL command to add data to table
       sql_add = f'insert into sao values ({SAO}, ' \
-          + f'{Pmag}, {Vmag}, "{SpType}");\n'
+          + f'"{RA}", {Vmag}, "{SpType}");\n'
       fh_sql.write(sql_add)
