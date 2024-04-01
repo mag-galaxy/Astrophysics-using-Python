@@ -15,10 +15,10 @@ with gzip.open(file_catalogue, 'rb') as fh:
       sys.exit(1)
 
     # Photographic Magnitude
-      try:
-        Pmag = float(line[76:80])# Vmag Byte 81~84
-      except:
-        Pmag = -999 # an impossible value
+    try:
+      Pmag = float(line[76:80])# Vmag Byte 81~84
+    except:
+      Pmag = -999 # an impossible value
     
     # Visual Magnitude
     try:
