@@ -4,11 +4,8 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-# URL of data
-url_data = 'https://cdsarc.cds.unistra.fr/ftp/I/131A/sao.dat.gz'
-
-# output file name
-file_output = 'sao.dat.gz'
+url_data = 'https://cdsarc.cds.unistra.fr/ftp/I/131A/sao.dat.gz'    # URL of data
+file_output = 'sao.dat.gz'    # output file name
 
 print (f'Now, fetching {url_data}...')
 # open URL and read data
