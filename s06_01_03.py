@@ -16,9 +16,9 @@ with gzip.open(file_catalogue, 'rb') as fh:
 
     # Right Ascension
     try:
-      RAh = int(line[7:9])
-      RAm = int(line[9:11])
-      RAs = float(line[11:17])
+      RAh = int(line[150:152])
+      RAm = int(line[152:154])
+      RAs = float(line[154:160])
     except:
       RAh = 99
       RAm = 99
@@ -27,10 +27,10 @@ with gzip.open(file_catalogue, 'rb') as fh:
 
     # Declination
     try:
-      Dec_sign = line[41:42].decode('utf-8')
-      Dec_d = int(line[42:44])
-      Dec_m = int(line[44:46])
-      Dec_s = int(line[46:51])
+      Dec_sign = line[167:168].decode('utf-8')
+      Dec_d = int(line[168:170])
+      Dec_m = int(line[170:172])
+      Dec_s = int(line[172:177])
     except:
       Dec_sign = '-'
       Dec_d = 99
