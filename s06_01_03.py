@@ -31,6 +31,6 @@ with gzip.open(file_catalogue, 'rb') as fh:
 
     # print extracted data
     print(f'SAO = {SAO}')
-    print(f'Pmag = {Pmag}')
-    print(f'Vmag = {Vmag}')
-    print(f'SpType = {SpType}')
+    print(f'  Pmag = {Pmag}')
+    print(f'  Vmag = {Vmag}')
+    print(f'  SpType = {SpType}')
