@@ -9,8 +9,7 @@ file_sql = 'sao.sql'
 with open(file_sql, 'w') as fh_sql:
   # SQL command to create table
   sql_table = f'create table sao (sao integer primary key,' \
-        + f'ra text, dec text, ' \
-        + f'vmag real, sptype text);\n'
+        + f'pmag real, vmag real, sptype text);\n'
   fh_sql.write(sql_table)
 
   #open catalogue file
