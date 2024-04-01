@@ -1,5 +1,4 @@
 # download .gz file
-
 import urllib.request
 import ssl
 
@@ -11,24 +10,16 @@ url_data = 'https://cdsarc.cds.unistra.fr/ftp/I/131A/sao.dat.gz'
 # output file name
 file_output = 'sao.dat.gz'
 
-# printing status
 print (f'Now, fetching {url_data}...')
-
-# opening URL
+# open URL and read data
 with urllib.request.urlopen (url_data) as fh_read:
-    # reading data
     data_byte = fh_read.read ()
 
-# printing status
 print (f'Finished fetching {url_data}!')
-
-# printing status
 print (f'Now, writing data into file "{file_output}"...')
 
-# opening file for writing
+# write data to output file
 with open (file_output, 'wb') as fh_write:
-    # writing data
     fh_write.write (data_byte)
 
-# printing status
 print (f'Finished writing data into file "{file_output}"!')
