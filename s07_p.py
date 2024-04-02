@@ -24,5 +24,5 @@ with open(file_sql, 'w') as fh_sql:
     abs_mag = item[2]
     sptype = item[3]
     sql_add = f'insert into star values ("{name}", ' \
-          + f'{app_mag}, {abs_mag}, "{SpType}");\n'
+          + f'{app_mag}, {abs_mag}, "{sptype}");\n'
     fh_sql.write(sql_add)
