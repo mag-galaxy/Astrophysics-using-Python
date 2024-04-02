@@ -25,4 +25,4 @@ with open(file_sql, 'w') as fh_sql:
     sptype = item[3]
     sql_add = f'insert into star values ("{name}", ' \
           + f'{app_mag}, {abs_mag}, "{SpType}");\n'
-      fh_sql.write(sql_add)
+    fh_sql.write(sql_add)
