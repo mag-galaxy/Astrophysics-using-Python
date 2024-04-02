@@ -9,7 +9,7 @@ file_sql = 'sao.sql'
 with open(file_sql, 'w') as fh_sql:
   # SQL command to create table
   sql_table = f'create table sao (sao integer primary key,' \
-        + f'ra text, vmag real, sptype text);\n'
+        + f'ra text, dec text, vmag real, sptype text);\n'
   fh_sql.write(sql_table)
 
   #open catalogue file
@@ -32,6 +32,19 @@ with open(file_sql, 'w') as fh_sql:
         RAh = 99
         RAh = 99.9
       RA = f'{RAh:02d}:{RAm:02d}:{RAs:04.1f}'
+
+      # Declination
+      try:
+        Dec_sign = line[167:168].decode('utf-8')
+        Dec_h = int(line[168:170])
+        Dec_m = int(line[170:172])
+        Dec_s = float(line[172:177])
+      except:
+        Dec_sign = '-'
+        Dec_h = 99
+        Dec_m = 99
+        Dec_s = 99.99
+      Dec = f'{Dec_sign}{Dec_h:02d}:{Dec_m:02d}:{Dec_s:05.2f}'
         
       # Visual Magnitude
       try:
@@ -44,5 +57,5 @@ with open(file_sql, 'w') as fh_sql:
 
       # SQL command to add data to table
       sql_add = f'insert into sao values ({SAO}, ' \
-          + f'"{RA}", {Vmag}, "{SpType}");\n'
+          + f'"{RA}", "{Dec}", {Vmag}, "{SpType}");\n'
       fh_sql.write(sql_add)
