@@ -27,16 +27,16 @@ with gzip.open(file_catalogue, 'rb') as fh:
 
     # Declination
     try:
-      Dec_sign = line[].decode('utf-8')
-      Dec_h = int(line[150:152])
-      Dec_m = int(line[152:154])
-      Dec_s = int(line[154:160])
+      Dec_sign = line[167:168].decode('utf-8')
+      Dec_h = int(line[168:170])
+      Dec_m = int(line[170:172])
+      Dec_s = float(line[172:177])
     except:
       Dec_sign = '-'
       Dec_h = 99
       Dec_m = 99
-      Dec_s = 99
-    Dec = f'{Dec_sign}{Dec_h:02d}:{Dec_m:02d}:{Dec_s:02d}'
+      Dec_s = 99.9
+    Dec = f'{Dec_sign}{Dec_h:02d}:{Dec_m:02d}:{Dec_s:05.2f}'
     
     # Visual Magnitude
     try:
