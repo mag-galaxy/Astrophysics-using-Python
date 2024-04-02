@@ -22,7 +22,7 @@ with gzip.open(file_catalogue, 'rb') as fh:
     except:
       RAh = 99
       RAh = 99
-      RAh = 99.9
+      RAh = 99.99
     RA = f'{RAh:02d}:{RAm:02d}:{RAs:04.1f}'
 
     # Declination
