@@ -24,6 +24,19 @@ with gzip.open(file_catalogue, 'rb') as fh:
       RAh = 99
       RAh = 99.9
     RA = f'{RAh:02d}:{RAm:02d}:{RAs:04.1f}'
+
+    # Declination
+    try:
+      Dec_sign = line[].decode('utf-8')
+      Dec_h = int(line[150:152])
+      Dec_m = int(line[152:154])
+      Dec_s = int(line[154:160])
+    except:
+      Dec_sign = '-'
+      Dec_h = 99
+      Dec_m = 99
+      Dec_s = 99
+    Dec = f'{Dec_sign}{Dec_h:02d}:{Dec_m:02d}:{Dec_s:02d}'
     
     # Visual Magnitude
     try:
@@ -37,5 +50,6 @@ with gzip.open(file_catalogue, 'rb') as fh:
     # print extracted data
     print(f'SAO = {SAO}')
     print(f'  RA = {RA}')
+    print(f'  Dec = {Dec}')
     print(f'  Vmag = {Vmag}')
     print(f'  SpType = {SpType}')
