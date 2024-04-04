@@ -11,7 +11,7 @@ UTC = astropy.time.Time ('2024-04-24 13:00:00', format='iso', scale='utc')
 # location of observer: NCU main campus
 longitude = '121d11m12s'
 latitude  = '+24d58m12s'
-height    = 151.6 * u_m
+height    = 151.6 * m
 observer  = astropy.coordinates.EarthLocation (longitude, latitude, height)
 
 # position of the Sun
