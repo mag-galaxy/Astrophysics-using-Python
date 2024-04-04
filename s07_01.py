@@ -19,7 +19,7 @@ sun = astropy.coordinates.get_body ('sun', UTC, location = observer)
 
 # change ra to azimuth, dec to elevation
 print(f'position of the Sun as observed at NCU main campus at {UTC}:')
-print(f' azimuth: {}')
+print(f' azimuth: ')
 print(f' elevation: {sun.dec.dms.d + sun.dec.dms.m / 60 + sun.dec.dms.s / 3600}')
 
 # print (f'  RA:  {int (sun.ra.hms.h):02d}:{int (sun.ra.hms.m):02d}', \
