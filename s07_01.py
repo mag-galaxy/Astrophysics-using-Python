@@ -23,7 +23,7 @@ moon = astropy.coordinates.get_body ('moon', UTC, location = observer)
 
 # convert RA/Dec to azimuth/elevation
 altaz = astropy.coordinates.AltAz(obstime = UTC, location = observer)
-moon_altaz = sun.transform_to(altaz)
+moon_altaz = moon.transform_to(altaz)
 moon_az = moon_altaz.az
 moon_alt = moon_altaz.alt
 
