@@ -1,43 +1,31 @@
-# importing astropy module
 import astropy.io.fits
 import astropy.units
 import astropy.coordinates
 import astropy.wcs
-
-# importing astroquery module
 import astroquery.simbad
 import astroquery.skyview
-
-# importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# object name
-object_name = 'Horsehead Nebula'
+# files
+download_file = 'm101.fits'
+output_file = 'm101.png'
+resolution = 250
 
-# survey name
+object_name = 'M101'
 survey = 'DSS2 Red'
 
 # field-of-view
-fov_arcmin = 20.0
+fov_arcmin = 45.0
 fov_arcsec = fov_arcmin * 60.0
 npixel     = int (fov_arcsec)
-
-# FITS file name
-file_fits = 'horsehead.fits'
-
-# PNG file name
-file_png = 'horsehead.png'
 
 # colour map
 cmap = 'magma'
 
-# resolution in DPI
-resolution_dpi = 225
-
 # units
-u_ha  = astropy.units.hourangle
-u_deg = astropy.units.deg
+ha  = astropy.units.hourangle
+deg = astropy.units.deg
 
 # name resolver
 query_result = astroquery.simbad.Simbad.query_object (object_name)
@@ -48,13 +36,13 @@ dec_str = query_result['DEC'][0]
 
 # making SkyCoord object of astropy
 coord = astropy.coordinates.SkyCoord (ra_str, dec_str, frame='icrs', \
-                                      unit=(u_ha, u_deg) )
-(ra, dec) = coord.to_string (style='hmsdms').split ()
+                                      unit=(ha, deg) )
+(RA, Dec) = coord.to_string (style='hmsdms').split ()
 
 # printing result
 print (f'Target name: "{object_name}"')
-print (f'  RA  = {ra}')
-print (f'  Dec = {dec}')
+print (f'  RA  = {RA}')
+print (f'  Dec = {Dec}')
 
 # getting a list of images
 list_image = astroquery.skyview.SkyView.get_image_list (position=coord, \
@@ -76,14 +64,12 @@ data   = image[0].data
 # printing image information
 print (image.info ())
 
-# printing status
 print (f'Writing a FITS file "{file_fits}"...')
 
 # writing FITS file
-hdu = astropy.io.fits.PrimaryHDU (data=data, header=header)
+hdu = astropy.io.fits.PrimaryHDU (data = data, header = header)
 hdu.writeto (file_fits)
 
-# printing status
 print (f'Done!')
 
 # opening FITS file
@@ -96,12 +82,11 @@ with astropy.io.fits.open (file_fits) as hdu_list:
     wcs    = astropy.wcs.WCS (header)
     image  = hdu_list[0].data
 
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
+# objects figure, canvas, axes
+fig = matplotlib.figure.Figure ()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111, projection=wcs)
+ax = fig.add_subplot (111, projection=wcs)
 
-# axes
 ax.set_title (object_name)
 ax.set_xlabel ('Right Ascension')
 ax.set_ylabel ('Declination')
@@ -111,12 +96,9 @@ norm \
     = astropy.visualization.mpl_normalize.ImageNormalize \
     ( stretch=astropy.visualization.AsinhStretch () )
 
-# plotting image
-im = ax.imshow (image, origin='lower', cmap=cmap, norm=norm)
-fig.colorbar (im)
+# plot
+im = ax.imshow(image, origin='lower', cmap = cmap, norm = norm)
+fig.colorbar(im)
 
-# printing status
-print (f'{file_fits} ==> {file_png}')
-
-# saving file
-fig.savefig (file_png, dpi=resolution_dpi)
+print(f'{file_fits} ==> {file_png}')
+fig.savefig(file_png, dpi=resolution_dpi)
