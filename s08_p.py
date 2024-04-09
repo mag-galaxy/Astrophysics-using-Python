@@ -5,8 +5,6 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 link = 'https://www.minorplanetcenter.net/iau/MPCORB/NEA.txt'    # URL of data
 
-
-
 file_sql = 'asteriod.sql'
 
 with open(file_sql, 'w') as fh_sql:
