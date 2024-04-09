@@ -21,6 +21,5 @@ with open(file_sql, 'w') as fh_sql:
       number = all_data[i][0:7].strip().decode('utf-8')
       semi = float(all_data[i][92:103])
     
-    sql_add = f'insert into asteriod values ("{number}", ' \
-          + f'{semi});\n'
+    sql_add = f'insert into asteriod values ("{number}", {semi});\n'
     fh_sql.write(sql_add)
