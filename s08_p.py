@@ -17,7 +17,7 @@ with open(file_sql, 'w') as fh_sql:
         + f'semi real);\n'
   fh_sql.write(sql_table)
 
-  for i in range(len(all_data))
+  for i in range(len(all_data)):
       number = all_data[i][0:7].strip().decode('utf-8')
       semi = float(all_data[i][92:103])
     
