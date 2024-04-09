@@ -21,7 +21,7 @@ fov_arcsec = fov_arcmin * 60.0
 npixel = int(fov_arcsec)
 
 # colour map
-cmap = 'magma'
+color = 'gray'
 
 # units
 ha = astropy.units.hourangle
@@ -39,31 +39,31 @@ coord = astropy.coordinates.SkyCoord(ra_str, dec_str, frame = 'icrs', \
                                       unit = (ha, deg))
 (RA, Dec) = coord.to_string(style = 'hmsdms').split()
 
-print (f'Target name: {object_name}')
-print (f'  RA = {RA}')
-print (f'  Dec = {Dec}')
+print(f'Target name: {object_name}')
+print(f'  RA = {RA}')
+print(f'  Dec = {Dec}')
 
 # getting a list of images
 list_image = astroquery.skyview.SkyView.get_image_list(position = coord, \
                                                         survey = survey)
-print ("images =", list_image)
+print("images =", list_image)
 
 # getting images
 images = astroquery.skyview.SkyView.get_images(position = coord, \
                                                 survey = survey, \
                                                 pixels = npixel)
 
-# image
+# image information
 image = images[0]
-header = image[0].header
-data = image[0].data
+i_header = image[0].header
+i_data = image[0].data
 print(image.info())
 
 # writing FITS file
 print(f'Writing a FITS file "{download_file}"...')
-hdu = astropy.io.fits.PrimaryHDU(data = data, header = header)
-hdu.writeto (download_file)
-print (f'Done!')
+hdu = astropy.io.fits.PrimaryHDU(data = i_data, header = i_header)
+hdu.writeto(download_file)
+print('Done!')
 
 # opening FITS file
 with astropy.io.fits.open(download_file) as hdu_list:
@@ -82,12 +82,11 @@ ax.set_xlabel('Right Ascension')
 ax.set_ylabel('Declination')
 
 # normalisation
-norm \
-    = astropy.visualization.mpl_normalize.ImageNormalize \
-    ( stretch=astropy.visualization.AsinhStretch () )
+norm = astropy.visualization.mpl_normalize.ImageNormalize\
+    (stretch = astropy.visualization.AsinhStretch())
 
 # plot
-im = ax.imshow(image, origin = 'lower', cmap = cmap, norm = norm)
+im = ax.imshow(image, origin = 'lower', cmap = color, norm = norm)
 fig.colorbar(im)
 
 print(f'{download_file} ==> {output_file}')
