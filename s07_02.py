@@ -35,8 +35,8 @@ ra_str = query_m101['RA'][0]
 dec_str = query_m101['DEC'][0]
 
 # making SkyCoord object of astropy
-coord = astropy.coordinates.SkyCoord(ra_str, dec_str, frame = 'icrs', \
-                                      unit = (ha, deg))
+coord = astropy.coordinates.SkyCoord\
+        (ra_str, dec_str, frame = 'icrs', unit = (ha, deg))
 (RA, Dec) = coord.to_string(style = 'hmsdms').split()
 
 print(f'Target name: {object_name}')
@@ -44,20 +44,19 @@ print(f'  RA = {RA}')
 print(f'  Dec = {Dec}\n')
 
 # getting a list of images
-list_image = astroquery.skyview.SkyView.get_image_list(position = coord, \
-                                                        survey = survey)
-print("images =", list_image)
+list_image = astroquery.skyview.SkyView.get_image_list\
+            (position = coord, survey = survey)
+print(f'image = {list_image}\n')
 
 # getting images
-images = astroquery.skyview.SkyView.get_images(position = coord, \
-                                                survey = survey, \
-                                                pixels = npixel)
+images = astroquery.skyview.SkyView.get_images\
+        (position = coord, survey = survey, pixels = npixel)
 
 # image information
 image = images[0]
 i_header = image[0].header
 i_data = image[0].data
-print(image.info())
+print(f'{image.info()}\n')
 
 # writing FITS file
 print(f'Writing a FITS file "{download_file}"...')
