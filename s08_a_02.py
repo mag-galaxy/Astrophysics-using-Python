@@ -1,7 +1,6 @@
 import numpy
 import astropy.units
 
-# input file name
 file_input = 'hd98800_b.data'
 
 # units
@@ -21,9 +20,9 @@ with open (file_input, 'r') as fh:
             # splitting data
             data = line.split ('+or-')
             # wavelength and flux
-            (wl_str, flux_str) = data[0].split ()
+            (wl_str, flux_str) = data[0].split()
             # error of flux
-            flux_error_str = data[1].split ()[0]
+            flux_error_str = (data[1].split())[0]
             # conversion from string into float
             wl         = float (wl_str)
             flux       = float (flux_str)
