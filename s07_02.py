@@ -66,7 +66,7 @@ print('Done!\n')
 
 # opening FITS file
 with astropy.io.fits.open(download_file) as hdu_list:
-    print(hdu_list.info())
+    print(f'{hdu_list.info()}\n')
     header = hdu_list[0].header
     wcs = astropy.wcs.WCS(header)
     image = hdu_list[0].data
