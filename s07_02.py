@@ -21,7 +21,7 @@ fov_arcsec = fov_arcmin * 60.0
 npixel = int(fov_arcsec)
 
 # colour map
-color = 'sagma'
+color = 'magma'
 
 # units
 ha = astropy.units.hourangle
