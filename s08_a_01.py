@@ -6,7 +6,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 link = 'https://iopscience.iop.org/0004-637X/865/1/77/suppdata/apjaad81bt3_ascii.txt?doi=10.3847/1538-4357/aad81b'
 
 # output file name
-file_output = 'hd9880_b.data'
+file_output = 'hd98800_b.data'
 
 print (f'Fetching {link}...')
 
