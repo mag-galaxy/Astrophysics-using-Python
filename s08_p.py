@@ -19,7 +19,7 @@ with open(file_sql, 'w') as fh_sql:
     # data_read = f_read.read().decode('utf-8')
     for line in f_read:
       number = line[0:7].strip().decode('utf-8')
-      semimajor = float(line[92:103])
+      semi = float(line[92:103])
     
     sql_add = f'insert into asteriod values ("{number}", ' \
           + f'{semi});\n'
