@@ -21,7 +21,7 @@ fov_arcsec = fov_arcmin * 60.0
 npixel = int(fov_arcsec)
 
 # colour map
-color = 'gray'
+color = 'inferno'
 
 # units
 ha = astropy.units.hourangle
@@ -41,7 +41,7 @@ coord = astropy.coordinates.SkyCoord(ra_str, dec_str, frame = 'icrs', \
 
 print(f'Target name: {object_name}')
 print(f'  RA = {RA}')
-print(f'  Dec = {Dec}')
+print(f'  Dec = {Dec}\n')
 
 # getting a list of images
 list_image = astroquery.skyview.SkyView.get_image_list(position = coord, \
@@ -63,7 +63,7 @@ print(image.info())
 print(f'Writing a FITS file "{download_file}"...')
 hdu = astropy.io.fits.PrimaryHDU(data = i_data, header = i_header)
 hdu.writeto(download_file)
-print('Done!')
+print('Done!\n')
 
 # opening FITS file
 with astropy.io.fits.open(download_file) as hdu_list:
