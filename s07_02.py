@@ -81,12 +81,11 @@ ax.set_xlabel('Right Ascension')
 ax.set_ylabel('Declination')
 
 # normalisation
-# norm = astropy.visualization.mpl_normalize.ImageNormalize\
-#     (stretch = astropy.visualization.AsinhStretch())
+norm = astropy.visualization.mpl_normalize.ImageNormalize\
+    (stretch = astropy.visualization.AsinhStretch())
 
 # plot
-# im = ax.imshow(image, origin = 'lower', cmap = color, norm = norm)
-im = ax.imshow(image, origin = 'lower', cmap = color)
+im = ax.imshow(image, origin = 'lower', cmap = color, norm = norm)
 fig.colorbar(im)
 
 print(f'{download_file} ==> {output_file}')
