@@ -85,7 +85,8 @@ ax.set_ylabel('Declination')
 #     (stretch = astropy.visualization.AsinhStretch())
 
 # plot
-im = ax.imshow(image, origin = 'lower', cmap = color, norm = norm)
+# im = ax.imshow(image, origin = 'lower', cmap = color, norm = norm)
+im = ax.imshow(image, origin = 'lower', cmap = color)
 fig.colorbar(im)
 
 print(f'{download_file} ==> {output_file}')
