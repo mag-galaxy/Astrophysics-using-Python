@@ -26,3 +26,4 @@ with open (file_sql, 'w') as fh_sql:
       
       sql_add = f'insert into asteriod values ("{number}", {semi});\n'
       fh_sql.write(sql_add)
+print('finish adding data into sql table')
