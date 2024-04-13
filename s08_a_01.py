@@ -13,11 +13,13 @@ print (f'Fetching {link}...')
 # open URL and read
 with urllib.request.urlopen (link) as fh_read:
     data_byte = fh_read.read()
+    print(data_byte)
 
 print (f'Fetched {link}!')
 
 # converting raw byte data into string
 data_str = data_byte.decode('utf-8')
+print(data_str)
 
 print (f'Now, writing data into file "{file_output}"...')
 
