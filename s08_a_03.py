@@ -8,41 +8,38 @@ file_output = 'hd98800_b.png'
 resolution_dpi = 150
 
 # units
-u_micron = astropy.units.micron
-u_Jy     = astropy.units.Jy
+micron = astropy.units.micron
+Jy     = astropy.units.Jy
 
-# making empty numpy arrays
-data_wl       = numpy.array ([])
-data_flux     = numpy.array ([])
-data_flux_err = numpy.array ([])
+# empty numpy arrays for storing data
+data_wl = numpy.array([])
+data_flux = numpy.array([])
+data_flux_err = numpy.array([])
 
 # opening data file
 with open (file_input, 'r') as fh:
     for line in fh:
         # if the word '+or-' is found, then we process the line
         if ('+or-' in line):
-            # splitting data
-            data = line.split ('+or-')
-            # wavelength and flux
-            (wl_str, flux_str) = data[0].split ()
-            # error of flux
-            flux_error_str = data[1].split ()[0]
-            # conversion from string into float
-            wl         = float (wl_str)
-            flux       = float (flux_str)
+            data = line.split ('+or-')        # before +or- is wavelength and flux
+            (wl_str, flux_str) = data[0].split()
+            flux_error_str = (data[1].split())[0]    # after +or- is flux error
+            
+            wl = float (wl_str)
+            flux = float (flux_str)
             flux_error = float (flux_error_str)
-            # appending data into numpy arrays
-            data_wl       = numpy.append (data_wl, wl)
-            data_flux     = numpy.append (data_flux, flux)
+
+            data_wl = numpy.append (data_wl, wl)
+            data_flux = numpy.append (data_flux, flux)
             data_flux_err = numpy.append (data_flux_err, flux_error)
 
 # adding units
-data_wl       = data_wl * u_micron
-data_flux     = data_flux * u_Jy
-data_flux_err = data_flux_err * u_Jy
+data_wl = data_wl * micron
+data_flux = data_flux * Jy
+data_flux_err = data_flux_err * Jy
 
 # printing data
-print (f'SED of HD 61005')
+print (f'SED of HD 98800 B')
 print (f'  wavelength:')
 print (f'    {data_wl}')
 print (f'  flux:')
@@ -50,20 +47,17 @@ print (f'    {data_flux}')
 print (f'  error of flux:')
 print (f'    {data_flux_err}')
 
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+# objects for plotting
+fig = matplotlib.figure.Figure()
+canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
+ax = fig.add_subplot(111)
 
-# labels
 ax.set_xlabel (r'Wavelength [$\mu$m]')
 ax.set_ylabel (r'Flux [Jy]')
-
-# axes
 ax.set_xscale ('log')
 ax.set_yscale ('log')
-ax.set_xlim (10**-1, 10**3)
-ax.set_ylim (10**-2, 10**1)
+ax.set_xlim (10**-1, 10**5)
+ax.set_ylim (10**-2, 10**4)
 
 # plotting data
 ax.errorbar (data_wl, data_flux, yerr=data_flux_err, \
