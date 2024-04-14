@@ -9,7 +9,7 @@ resolution_dpi = 150
 
 # units
 micron = astropy.units.micron
-Jy     = astropy.units.Jy
+Jy = astropy.units.Jy
 
 # empty numpy arrays for storing data
 data_wl = numpy.array([])
@@ -25,9 +25,9 @@ with open (file_input, 'r') as fh:
             (wl_str, flux_str) = data[0].split()
             flux_error_str = (data[1].split())[0]    # after +or- is flux error
             
-            wl = float (wl_str)
-            flux = float (flux_str)
-            flux_error = float (flux_error_str)
+            wl = float(wl_str)
+            flux = float(flux_str) * 0.001            # 1 mJy = 0.001 Jy
+            flux_error = float(flux_error_str) *0.001
 
             data_wl = numpy.append (data_wl, wl)
             data_flux = numpy.append (data_flux, flux)
@@ -63,8 +63,7 @@ ax.set_ylim (10**-2, 10**4)
 ax.errorbar (data_wl, data_flux, yerr=data_flux_err, \
              linestyle='None', marker='o', markersize=5, color='red', \
              ecolor='black', elinewidth=2, capsize=5, \
-             label='HD61005')
+             label='HD 98800 B')
 ax.legend ()
 
-# saving the plot into a file
 fig.savefig (file_output, dpi=resolution_dpi)
