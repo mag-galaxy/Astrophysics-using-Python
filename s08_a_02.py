@@ -22,9 +22,9 @@ with open (file_input, 'r') as fh:
             (wl_str, flux_str) = data[0].split()
             flux_error_str = (data[1].split())[0]    # after +or- is flux error
             
-            wl = float (wl_str)
-            flux = float (flux_str)
-            flux_error = float (flux_error_str)
+            wl = float(wl_str)
+            flux = float(flux_str) * 0.001            # 1 mJy = 0.001 Jy
+            flux_error = float(flux_error_str) *0.001
 
             data_wl = numpy.append (data_wl, wl)
             data_flux = numpy.append (data_flux, flux)
