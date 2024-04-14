@@ -8,20 +8,13 @@ link = 'https://iopscience.iop.org/0004-637X/865/1/77/suppdata/apjaad81bt3_ascii
 # output file name
 file_output = 'hd98800_b.data'
 
-print (f'Fetching {link}...')
-
 # open URL and read
 with urllib.request.urlopen (link) as fh_read:
     data_byte = fh_read.read()
-    print(data_byte)
-
-print (f'Fetched {link}!')
 
 # converting raw byte data into string
 data_str = data_byte.decode('utf-8')
 print(data_str)
-
-print (f'Now, writing data into file "{file_output}"...')
 
 # write data
 with open (file_output, 'w') as fh_write:
