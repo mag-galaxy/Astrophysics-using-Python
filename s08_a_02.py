@@ -6,7 +6,7 @@ file_input = 'hd98800_b.data'
 
 # units
 micron = astropy.units.micron
-Jy     = astropy.units.Jy
+Jy = astropy.units.Jy
 
 # empty numpy arrays for storing data
 data_wl = numpy.array([])
