@@ -56,8 +56,8 @@ ax.set_xlabel (r'Wavelength [$\mu$m]')
 ax.set_ylabel (r'Flux [Jy]')
 ax.set_xscale ('log')
 ax.set_yscale ('log')
-ax.set_xlim (10**-1, 10**5)
-ax.set_ylim (10**-2, 10**4)
+ax.set_xlim (10**-1, 10**4)
+ax.set_ylim (10**-2, 10**2)
 
 # plotting data
 ax.errorbar (data_wl, data_flux, yerr=data_flux_err, \
