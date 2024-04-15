@@ -1,3 +1,4 @@
+# extract data and visualize
 import numpy
 import astropy.units
 import matplotlib.figure
