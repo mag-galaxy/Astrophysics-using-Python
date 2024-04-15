@@ -27,7 +27,7 @@ with open (file_input, 'r') as fh:
             
             wl = float(wl_str)
             flux = float(flux_str) * 0.001            # 1 mJy = 0.001 Jy
-            flux_error = float(flux_error_str) *0.001
+            flux_error = float(flux_error_str) * 0.001
 
             data_wl = numpy.append (data_wl, wl)
             data_flux = numpy.append (data_flux, flux)
