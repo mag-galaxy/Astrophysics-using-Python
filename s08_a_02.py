@@ -22,7 +22,7 @@ with open (file_input, 'r') as fh:
     for line in fh:
         # if the word '+or-' is found, then we process the line
         if ('+or-' in line):
-            data = line.split ('+or-')        # before +or- is wavelength and flux
+            data = line.split('+or-')        # before +or- is wavelength and flux
             (wl_str, flux_str) = data[0].split()
             flux_error_str = (data[1].split())[0]    # after +or- is flux error
             
@@ -53,18 +53,18 @@ fig = matplotlib.figure.Figure()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
 ax = fig.add_subplot(111)
 
-ax.set_xlabel (r'Wavelength [$\mu$m]')
-ax.set_ylabel (r'Flux [Jy]')
-ax.set_xscale ('log')
-ax.set_yscale ('log')
-ax.set_xlim (10**-1, 10**4)
-ax.set_ylim (10**-2, 10**2)
+ax.set_xlabel(r'Wavelength [$\mu$m]')
+ax.set_ylabel(r'Flux [Jy]')
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlim(10**-1, 10**4)
+ax.set_ylim(10**-2, 10**2)
 
 # plotting data
-ax.errorbar (data_wl, data_flux, yerr=data_flux_err, \
+ax.errorbar(data_wl, data_flux, yerr=data_flux_err, \
              linestyle='None', marker='o', markersize=5, color='red', \
              ecolor='black', elinewidth=2, capsize=5, \
              label='HD 98800 B')
-ax.legend ()
+ax.legend()
 
-fig.savefig (file_output, dpi=resolution_dpi)
+fig.savefig(file_output, dpi=resolution_dpi)
