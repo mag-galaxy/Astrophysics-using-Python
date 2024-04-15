@@ -18,52 +18,48 @@ h = astropy.constants.h
 k = astropy.constants.k_B
 
 # units
-u_micron = astropy.units.micron
-u_Jy     = astropy.units.Jy
-u_K      = astropy.units.K
+micron = astropy.units.micron
+Jy = astropy.units.Jy
+K = astropy.units.K
 
-# making empty numpy arrays
-data_wl       = numpy.array ([])
-data_flux     = numpy.array ([])
-data_flux_err = numpy.array ([])
-phot_wl       = numpy.array ([])
-phot_flux     = numpy.array ([])
-phot_flux_err = numpy.array ([])
-disk_wl       = numpy.array ([])
-disk_flux     = numpy.array ([])
-disk_flux_err = numpy.array ([])
+# empty numpy arrays for storing data
+data_wl = numpy.array([])
+data_flux = numpy.array([])
+data_flux_err = numpy.array([])
+phot_wl = numpy.array([])
+phot_flux = numpy.array([])
+phot_flux_err = numpy.array([])
+disk_wl  = numpy.array([])
+disk_flux = numpy.array([])
+disk_flux_err = numpy.array([])
 
 # opening data file
 with open (file_input, 'r') as fh:
-    # reading data line-by-line
     for line in fh:
         # if the word '+or-' is found, then we process the line
         if ('+or-' in line):
-            # splitting data
-            data = line.split ('+or-')
-            # wavelength and flux
-            (wl_str, flux_str) = data[0].split ()
-            # error of flux
-            flux_error_str = data[1].split ()[0]
-            # conversion from string into float
-            wl         = float (wl_str)
-            flux       = float (flux_str)
-            flux_error = float (flux_error_str)
-            # appending data into numpy arrays
-            data_wl       = numpy.append (data_wl, wl)
-            data_flux     = numpy.append (data_flux, flux)
+            data = line.split('+or-')        # before +or- is wavelength and flux
+            (wl_str, flux_str) = data[0].split()
+            flux_error_str = (data[1].split())[0]    # after +or- is flux error
+            
+            wl = float(wl_str)
+            flux = float(flux_str) * 0.001            # 1 mJy = 0.001 Jy
+            flux_error = float(flux_error_str) * 0.001
+
+            data_wl = numpy.append (data_wl, wl)
+            data_flux = numpy.append (data_flux, flux)
             data_flux_err = numpy.append (data_flux_err, flux_error)
 
 # adding units
-data_wl       = data_wl * u_micron
-data_flux     = data_flux * u_Jy
-data_flux_err = data_flux_err * u_Jy
-phot_wl       = phot_wl * u_micron
-phot_flux     = phot_flux * u_Jy
-phot_flux_err = phot_flux_err * u_Jy
-disk_wl       = disk_wl * u_micron
-disk_flux     = disk_flux * u_Jy
-disk_flux_err = disk_flux_err * u_Jy
+data_wl = data_wl * micron
+data_flux = data_flux * Jy
+data_flux_err = data_flux_err * Jy
+phot_wl = phot_wl * micron
+phot_flux = phot_flux * Jy
+phot_flux_err = phot_flux_err * Jy
+disk_wl = disk_wl * micron
+disk_flux = disk_flux * Jy
+disk_flux_err = disk_flux_err * Jy
 
 # printing data
 print (f'SED of HD 61005')
@@ -75,10 +71,10 @@ print (f'  error of flux:')
 print (f'    {data_flux_err}')
 
 # initial values of coefficients for fitting by least-squares method
-T_phot     = 5000.0
-a_phot     = 10**8
-T_disk     = 100.0
-a_disk     = 10**10
+T_phot = 5000.0
+a_phot = 10**8
+T_disk = 100.0
+a_disk = 10**10
 init_coeff = [T_phot, a_phot, T_disk, a_disk]
 
 # function
@@ -105,43 +101,38 @@ popt, pcov = scipy.optimize.curve_fit (twobb_nu, \
                                        sigma=data_flux_err.value)
 
 # result of fitting
-print (f"T_phot = {popt[0]} K")
-print (f"T_disk = {popt[2]} K")
-print (f'{popt}')
+print(f"T_phot = {popt[0]} K")
+print(f"T_disk = {popt[2]} K")
+print(f'{popt}')
 
 # generating fitted curve
-wl_min  = -1.0
-wl_max  = 3.0
-n       = 4001
-model_x = numpy.logspace (wl_min, wl_max, n)
-model_y = twobb_nu (model_x, popt[0], popt[1], popt[2], popt[3])
+wl_min = -1.0
+wl_max = 3.0
+n = 4001
+model_x = numpy.logspace(wl_min, wl_max, n)
+model_y = twobb_nu(model_x, popt[0], popt[1], popt[2], popt[3])
 
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+# objects for plotting
+fig = matplotlib.figure.Figure()
+canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
+ax = fig.add_subplot(111)
 
-# labels
-ax.set_xlabel (r'Wavelength [$\mu$m]')
-ax.set_ylabel (r'Flux [Jy]')
-
-# axes
-ax.set_xscale ('log')
-ax.set_yscale ('log')
-ax.set_xlim (10**-1, 10**3)
-ax.set_ylim (10**-2, 10**1)
+ax.set_xlabel(r'Wavelength [$\mu$m]')
+ax.set_ylabel(r'Flux [Jy]')
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlim(10**-1, 10**4)
+ax.set_ylim(10**-2, 10**2)
 
 # plotting data
-ax.errorbar (data_wl, data_flux, yerr=data_flux_err, \
+ax.errorbar(data_wl, data_flux, yerr=data_flux_err, \
              linestyle='None', marker='o', markersize=5, color='red', \
              ecolor='black', elinewidth=2, capsize=5, \
              zorder=0.2, \
-             label='HD61005')
+             label='HD 98800 B')
 ax.plot (model_x, model_y, \
          linestyle='--', linewidth=3, color='olive', \
          zorder=0.1, \
          label='Two-temperature blackbody fitting')
 ax.legend ()
-
-# saving the plot into a file
 fig.savefig (file_output, dpi=resolution_dpi)
