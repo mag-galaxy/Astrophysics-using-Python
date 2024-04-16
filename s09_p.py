@@ -39,6 +39,7 @@ with open(file_sql, 'w') as fh_sql:
         try:
             B_V = float(line[244:251])
         except:
+            B_V = 0
     
         # print extracted data
         print(f'HIP = {HIP}')
