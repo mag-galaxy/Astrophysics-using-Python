@@ -19,3 +19,20 @@ with open (file_output, 'wb') as fh_write:
     fh_write.write (data_byte)
 
 print (f'Finished writing data into file "{file_output}"!')
+
+with open(file_output, 'rb') as fh:
+  for line in fh:
+    try:
+      HIP = int(line[8:14])
+    except:
+      print("ERROR: cannot extract HIP number!")
+      sys.exit(1)
+
+    # Right Ascension
+    try:
+        B_V = float(line[244:251])
+    except:
+
+    # print extracted data
+    print(f'HIP = {HIP}')
+    print(f'  B_V = {B_V}')
