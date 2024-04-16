@@ -40,12 +40,8 @@ with open(file_sql, 'w') as fh_sql:
             B_V = float(line[244:251])
         except:
             B_V = 0
-    
-        # print extracted data
-        print(f'HIP = {HIP}')
-        print(f'  B_V = {B_V}')
 
         # SQL command to add data to table
-        sql_add = f'insert into hip values ({hip}, ' \
-          + f', {Vmag});\n'
+        sql_add = f'insert into hip values ({HIP}, ' \
+          + f', {B_V});\n'
         fh_sql.write(sql_add)
