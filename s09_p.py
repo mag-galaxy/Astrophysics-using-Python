@@ -24,7 +24,7 @@ print (f'Finished writing data into file "{file_output}"!')
 # create table
 with open(file_sql, 'w') as fh_sql:
     # SQL command to create table
-    sql_table = f'create table sao (hip integer primary key,' \
+    sql_table = f'create table hip (hip integer primary key,' \
             + f' B_V real);\n'
     fh_sql.write(sql_table)
     with open(file_output, 'rb') as fh:
@@ -45,6 +45,6 @@ with open(file_sql, 'w') as fh_sql:
         print(f'  B_V = {B_V}')
 
         # SQL command to add data to table
-        sql_add = f'insert into sao values ({SAO}, ' \
+        sql_add = f'insert into hip values ({hip}, ' \
           + f', {Vmag});\n'
         fh_sql.write(sql_add)
