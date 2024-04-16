@@ -24,8 +24,7 @@ print (f'Finished writing data into file "{file_output}"!')
 # create table
 with open(file_sql, 'w') as fh_sql:
     # SQL command to create table
-    sql_table = f'create table hip (hip integer primary key,' \
-            + f' B_V real);\n'
+    sql_table = f'create table hip (hip integer primary key,  B_V real);\n'
     fh_sql.write(sql_table)
     with open(file_output, 'rb') as fh:
       for line in fh:
@@ -42,6 +41,5 @@ with open(file_sql, 'w') as fh_sql:
             B_V = 0
 
         # SQL command to add data to table
-        sql_add = f'insert into hip values ({HIP}, ' \
-          + f', {B_V});\n'
+        sql_add = f'insert into hip values ({HIP}, {B_V});\n'
         fh_sql.write(sql_add)
