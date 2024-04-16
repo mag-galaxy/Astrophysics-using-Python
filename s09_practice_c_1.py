@@ -3,7 +3,7 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-url_data = 'https://cdsarc.cds.unistra.fr/viz-bin/nph-Cat/txt.gz?V/84/cstar.dat.gz'    # URL of data
+url_data = 'https://cdsarc.cds.unistra.fr/viz-bin/nph-Cat/txt.gz?V/84/main.dat.gz'    # URL of data
 file_output = 'cstar.dat.gz'    # output file name
 
 print (f'Now, fetching {url_data}...')
