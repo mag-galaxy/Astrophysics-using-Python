@@ -47,14 +47,18 @@ with gzip.open (input_file, 'rb') as fh:
           Dec_d = 99
           Dec_m = 99
           Dec_s = 99.99
-        Dec = f'{Dec_sign}{Dec_d:02d}:{Dec_m:02d}:{Dec_s:04.1f}'
+        if Dec_sign == '-' :
+            Dec = Dec_d + Dec_m + Dec_s
+        else:
+            Dec = -(Dec_d + Dec_m + Dec_s)
 
         # skipping, if any of data is missing.
         if ((RA == '') or (Dec == '')):
             continue
     
+        
         # coordinate
-        coord = astropy.coordinates.SkyCoord (ra_rad, dec_rad, \
+        coord = astropy.coordinates.SkyCoord (RA, Dec, \
                                               frame=astropy.coordinates.ICRS, \
                                               unit=u_rad)
 
