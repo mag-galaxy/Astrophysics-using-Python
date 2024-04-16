@@ -36,7 +36,7 @@ with open(file_sql, 'w') as fh_sql:
     
         # Right Ascension
         try:
-            B_V = float(line[244:251])
+            B_V = float(line[245:251])
         except:
             B_V = 0
 
