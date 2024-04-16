@@ -6,12 +6,12 @@ ssl._create_default_https_context = ssl._create_unverified_context
 link = 'https://cdsarc.cds.unistra.fr/ftp/cats/I/239/hip_main.dat'    # URL of data
 file_output = 'hip.data'    # output file name
 
-print (f'Now, fetching {url_data}...')
+print (f'Now, fetching {link}...')
 # open URL and read data
-with urllib.request.urlopen (url_data) as fh_read:
+with urllib.request.urlopen (link) as fh_read:
     data_byte = fh_read.read ()
 
-print (f'Finished fetching {url_data}!')
+print (f'Finished fetching {link}!')
 print (f'Now, writing data into file "{file_output}"...')
 
 # write data to output file
