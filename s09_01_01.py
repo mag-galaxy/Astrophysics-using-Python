@@ -9,8 +9,8 @@ print (f'Now, fetching {link}...')
 with urllib.request.urlopen (link) as fh_read:
     with open (file_output, 'wb') as fh_write:
         for line in fh_read:
-            #data_str = line.decode('utf-8')
             print(line)
-            #fh_write.write (data_str)
+            data_str = line.decode('utf-8')
+            fh_write.write (data_str)
 
 print (f'Finished writing data into file "{file_output}"!')
