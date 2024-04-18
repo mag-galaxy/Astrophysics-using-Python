@@ -100,72 +100,52 @@ def bb_nu (x, T, a):
     f = c.value / x_m               # frequency in Hz
     y = a * 2.0 * h.value * f**3 / c.value**2 \
         / (numpy.exp (h.value * f / (k.value * T) ) - 1.0 )
-    # returning blackbody radiation
-    return (y)
+    return(y)
 
 # weighted least-squares method
-popt_phot, pcov_phot = scipy.optimize.curve_fit (bb_nu, \
-                                                 phot_wl.value, \
-                                                 phot_flux.value, \
-                                                 p0=init_phot, \
-                                                 sigma=phot_flux_err.value)
-popt_disk, pcov_disk = scipy.optimize.curve_fit (bb_nu, \
-                                                 disk_wl.value, \
-                                                 disk_flux.value, \
-                                                 p0=init_disk, \
-                                                 sigma=disk_flux_err.value)
+popt_phot, pcov_phot = scipy.optimize.curve_fit(bb_nu, phot_wl.value, phot_flux.value, \
+                                                 p0=init_phot, sigma=phot_flux_err.value)
+popt_disk, pcov_disk = scipy.optimize.curve_fit(bb_nu, disk_wl.value, disk_flux.value, \
+                                                 p0=init_disk, sigma=disk_flux_err.value)
 
 # result of fitting
 print (f"T_phot = {popt_phot[0]} K")
 print (f"T_disk = {popt_disk[0]} K")
 
 # generating fitted curve
-wl_min = -1.0
-wl_max = 3.0
-n      = 4001
-phot_x = numpy.logspace (wl_min, wl_max, n)
-phot_y = bb_nu (phot_x, popt_phot[0], popt_phot[1])
-disk_x = numpy.logspace (wl_min, wl_max, n)
-disk_y = bb_nu (disk_x, popt_disk[0], popt_disk[1])
+wl_min = -3.0
+wl_max = 6.0
+n = 4001
+phot_x = numpy.logspace(wl_min, wl_max, n)
+phot_y = bb_nu(phot_x, popt_phot[0], popt_phot[1])
+disk_x = numpy.logspace(wl_min, wl_max, n)
+disk_y = bb_nu(disk_x, popt_disk[0], popt_disk[1])
 
 # two temperature model
-twoT_x = numpy.logspace (wl_min, wl_max, n)
+twoT_x = numpy.logspace(wl_min, wl_max, n)
 twoT_y = phot_y + disk_y
 
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+# objects for plotting
+fig = matplotlib.figure.Figure()
+canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
+ax = fig.add_subplot(111)
 
-# labels
 ax.set_xlabel (r'Wavelength [$\mu$m]')
 ax.set_ylabel (r'Flux [u_Jy]')
-
-# axes
 ax.set_xscale ('log')
 ax.set_yscale ('log')
-ax.set_xlim (10**-1, 10**3)
-ax.set_ylim (10**-2, 10**1)
+ax.set_xlim(10**-3, 10**6)
+ax.set_ylim(10**-5, 10**2)
 
 # plotting data
-ax.errorbar (data_wl, data_flux, yerr=data_flux_err, \
+ax.errorbar(data_wl, data_flux, yerr=data_flux_err, \
              linestyle='None', marker='o', markersize=5, color='red', \
-             ecolor='black', elinewidth=2, capsize=5, \
-             zorder=0.4, \
-             label='HD61005')
-ax.plot (phot_x, phot_y, \
-         linestyle='--', linewidth=3, color='blue', \
-         zorder=0.2, \
-         label='Blackbody fitting at visible-NIR')
-ax.plot (disk_x, disk_y, \
-         linestyle=':', linewidth=3, color='green', \
-         zorder=0.3, \
-         label='Blackbody fitting at mid-IR')
-ax.plot (twoT_x, twoT_y, \
-         linestyle='-', linewidth=5, color='orange', \
-         zorder=0.1, \
-         label='two temperature blackbody model')
-ax.legend ()
-
-# saving the plot into a file
+             ecolor='black', elinewidth=2, capsize=5, zorder=0.4, label='HD61005')
+ax.plot(phot_x, phot_y, linestyle='--', linewidth=3, color='blue', \
+         zorder=0.2, label='Blackbody fitting at visible-NIR')
+ax.plot(disk_x, disk_y, linestyle=':', linewidth=3, color='green', \
+         zorder=0.3, label='Blackbody fitting at mid-IR')
+ax.plot(twoT_x, twoT_y, linestyle='-', linewidth=5, color='orange', \
+         zorder=0.1, label='two temperature blackbody model')
+ax.legend()
 fig.savefig (file_output, dpi=resolution_dpi)
