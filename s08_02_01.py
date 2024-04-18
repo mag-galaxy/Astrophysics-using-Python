@@ -102,7 +102,7 @@ print (f"T_disk = {popt_disk[0]} K")
 # generating fitted curve
 wl_min = -3.0
 wl_max = 6.0
-n = 4001
+n = 9001
 phot_x = numpy.logspace(wl_min, wl_max, n)
 phot_y = bb_nu(phot_x, popt_phot[0], popt_phot[1])
 disk_x = numpy.logspace(wl_min, wl_max, n)
