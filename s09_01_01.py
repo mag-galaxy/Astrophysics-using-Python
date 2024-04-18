@@ -7,8 +7,8 @@ file_output = 'hii.data'    # output file name
 
 print (f'Now, fetching {link}...')
 with urllib.request.urlopen (link) as fh_read:
-    data_byte = fh_read.read ()
-    print(data_byte)
+    for line in fh_read:
+        print(line)
 
 with open (file_output, 'wb') as fh_write:
     fh_write.write (data_byte)
