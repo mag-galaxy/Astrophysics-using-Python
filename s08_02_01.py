@@ -10,15 +10,12 @@ file_input = 'hd98800_b.data'
 file_output = 'HD98800B.png'
 resolution_dpi = 150
 
-# constants
+# constants & units
 c = astropy.constants.c
 h = astropy.constants.h
 k = astropy.constants.k_B
-
-# units
 u_micron = astropy.units.micron
 u_Jy     = astropy.units.Jy
-u_K      = astropy.units.K
 
 # making empty numpy arrays
 data_wl = numpy.array([])
@@ -39,11 +36,9 @@ with open (file_input, 'r') as fh:
             data = line.split('+or-')        # before +or- is wavelength and flux
             (wl_str, flux_str) = data[0].split()
             flux_error_str = (data[1].split())[0]    # after +or- is flux error
-            
             wl = float(wl_str)
             flux = float(flux_str) * 0.001            # 1 mu_Jy = 0.001 u_Jy
             flux_error = float(flux_error_str) * 0.001
-
             data_wl = numpy.append(data_wl, wl)
             data_flux = numpy.append(data_flux, flux)
             data_flux_err = numpy.append(data_flux_err, flux_error)
@@ -71,14 +66,6 @@ disk_flux = disk_flux * u_Jy
 disk_flux_err = disk_flux_err * u_Jy
 
 # printing data
-print (f'SED of HD 61005')
-print (f'  wavelength:')
-print (f'    {data_wl}')
-print (f'  flux:')
-print (f'    {data_flux}')
-print (f'  error of flux:')
-print (f'    {data_flux_err}')
-
 print (f'data for SED fitting at visible-NIR:')
 print (f'  {phot_wl}')
 print (f'  {phot_flux}')
