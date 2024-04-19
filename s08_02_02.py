@@ -21,13 +21,6 @@ u_Jy     = astropy.units.Jy
 data_wl = numpy.array([])
 data_flux = numpy.array([])
 data_flux_err = numpy.array([])
-phot_wl = numpy.array([])
-phot_flux = numpy.array([])
-phot_flux_err = numpy.array([])
-disk_wl = numpy.array([])
-disk_flux = numpy.array([])
-disk_flux_err = numpy.array([])
-
 
 # opening data file
 with open (file_input, 'r') as fh:
@@ -48,12 +41,6 @@ with open (file_input, 'r') as fh:
 data_wl = data_wl * u_micron
 data_flux = data_flux * u_Jy
 data_flux_err = data_flux_err * u_Jy
-phot_wl = phot_wl * u_micron
-phot_flux = phot_flux * u_Jy
-phot_flux_err = phot_flux_err * u_Jy
-disk_wl = disk_wl * u_micron
-disk_flux = disk_flux * u_Jy
-disk_flux_err = disk_flux_err * u_Jy
 
 # initial values of coefficients for fitting by least-squares method
 T_phot = 5000.0
