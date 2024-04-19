@@ -91,7 +91,7 @@ ax.set_ylim(10**-5, 10**2)
 # plotting data
 ax.errorbar (data_wl, data_flux, yerr=data_flux_err, \
              linestyle='None', marker='o', markersize=5, color='red', \
-             ecolor='black', elinewidth=2, capsize=5, zorder=0.2, label='HD61005')
+             ecolor='black', elinewidth=2, capsize=5, zorder=0.2, label='HD98800B')
 ax.plot (model_x, model_y, linestyle='-', linewidth=3, color='olive', \
          zorder=0.1, label='Two-temperature blackbody fitting')
 ax.legend ()
