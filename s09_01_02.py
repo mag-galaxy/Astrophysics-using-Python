@@ -8,8 +8,8 @@ import matplotlib.backends.backend_agg
 # date/time
 date = astropy.time.Time ('2024-05-01 00:00:00')
 
-file_input = 'asteroids_100000.data'
-file_output = 'appy_s09_00_17.png'
+file_input = 'glactic_hii.data'
+file_output = 'glactic_hii.png'
 resolution_dpi = 150
 
 # making empty lists for storing data
