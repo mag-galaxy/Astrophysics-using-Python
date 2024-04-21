@@ -7,9 +7,14 @@ file_output = 'hii.data'    # output file name
 
 print (f'Now, fetching {link}...')
 with urllib.request.urlopen (link) as fh_read:
+    i = 0
     for line in fh_read:
-        data_str = line.decode('utf-8')
-        data_list = data_str.split(',')
-        print(data_list)
+        if i==0:
+            ++i
+            continue
+        else:
+            data_str = line.decode('utf-8')
+            data_list = data_str.split(',')
+            print(data_list)
 
 #print (f'Finished writing data into file "{file_output}"!')
