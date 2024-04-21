@@ -1,26 +1,4 @@
-import numpy
-import astropy.coordinates
-import astropy.time
-import astropy.units
-import matplotlib.figure
-import matplotlib.backends.backend_agg
 
-# date/time
-date = astropy.time.Time ('2024-05-01 00:00:00')
-
-file_input = 'glactic_hii.data'
-file_output = 'glactic_hii.png'
-resolution_dpi = 150
-
-# making empty lists for storing data
-list_ra_deg  = []
-list_dec_deg = []
-
-# units
-u_deg = astropy.units.degree
-
-# printing status
-print (f'Now, reading data file...')
 
 # opening data file
 with open (file_input, 'r') as fh:
