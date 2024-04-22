@@ -21,7 +21,7 @@ list_dec_deg = []
 with urllib.request.urlopen (link) as fh_read:
     i = 0
     for line in fh_read:
-        if i==0:
+        if i==0:                # skip first line
             ++i
             continue
         else:
