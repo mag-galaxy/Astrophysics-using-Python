@@ -65,7 +65,7 @@ ax = fig.add_subplot (111, projection='mollweide')        # use Mollweide projec
 ax.grid()
 ax.set_xlabel('Right Ascension [deg]')
 ax.set_ylabel('Declination [deg]')
-ax.set_title(f"Distribution of Galictic Hii regions on {date}, loc='right')
+ax.set_title(f'Distribution of Galictic Hii regions on {date}', loc='right')
 ax.plot(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), linestyle='None',
          marker='o', markersize=1, color='blue', alpha=0.1, label='Glactic Hii')
 ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
