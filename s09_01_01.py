@@ -29,6 +29,7 @@ with urllib.request.urlopen (link) as fh_read:
             data_list = data_str.split(',')
             gal_l = float(data_list[2])    # glactic longitude
             gal_b = float(data_list[3])    # glactic latitude
+            print(gal_l + ' ' + gal_b)
             gal_coord = astropy.coordinates.Galactic(l=gal_l, b=gal_b)
             ra_deg = gal_coord.transform_to(astropy.coordinates.ICRS ()).ra.wrap_at(180.0*u_deg).radian
             dec_deg = gal_coord.transform_to(astropy.coordinates.ICRS ()).dec.radian    
@@ -73,4 +74,5 @@ ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
 ax.plot (gal_ra, gal_dec, linestyle='None', marker='o', markersize=5, \
          color='silver', alpha=0.5, label='Galactic plane')
 ax.legend (bbox_to_anchor = (0.9, -0.1))
-fig.savefig ('glactic_hii.png', dpi=resolution_dpi)
+
+fig.savefig(png_output, dpi=resolution_dpi)
