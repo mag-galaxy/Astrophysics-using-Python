@@ -73,4 +73,4 @@ ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
 ax.plot (gal_ra, gal_dec, linestyle='None', marker='o', markersize=5, \
          color='silver', alpha=0.5, label='Galactic plane')
 ax.legend (bbox_to_anchor = (0.9, -0.1))
-fig.savefig (png_output, dpi=resolution_dpi)
+fig.savefig ('glactic_hii.png', dpi=resolution_dpi)
