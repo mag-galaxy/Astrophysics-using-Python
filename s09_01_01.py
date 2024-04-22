@@ -42,21 +42,20 @@ array_ra_deg = numpy.array(list_ra_deg)
 array_dec_deg = numpy.array(list_dec_deg)
 
 print('finish adding data')
-
 date = astropy.time.Time('2024-04-22 00:00:00')
 
 # ecliptic plane
 ecl_lon = numpy.linspace(0.001, 359.999, 1000) * u_deg
 ecl_lat = numpy.zeros(1000) * u_deg
 ecl_coord = astropy.coordinates.GeocentricMeanEcliptic(lon=ecl_lon, lat=ecl_lat, obstime=date)
-ecl_ra = ecl_coord.transform_to(astropy.coordinates.ICRS ()).ra.wrap_at (180.0 * u_deg).radian
+ecl_ra = ecl_coord.transform_to(astropy.coordinates.ICRS ()).ra.wrap_at(180.0*u_deg).radian
 ecl_dec = ecl_coord.transform_to(astropy.coordinates.ICRS ()).dec.radian
 
 # galactic plane
 gal_lon = numpy.linspace(0.001, 359.999, 1000) * u_deg
 gal_lat = numpy.zeros(1000) * u_deg
 gal_coord = astropy.coordinates.Galactic(l = gal_lon, b = gal_lat)
-gal_ra = gal_coord.transform_to(astropy.coordinates.ICRS ()).ra.wrap_at (180.0 * u_deg).radian
+gal_ra = gal_coord.transform_to(astropy.coordinates.ICRS ()).ra.wrap_at(180.0*u_deg).radian
 gal_dec = gal_coord.transform_to(astropy.coordinates.ICRS ()).dec.radian
 
 # figure, canvas, axes object for plotting
@@ -74,5 +73,4 @@ ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
 ax.plot (gal_ra, gal_dec, linestyle='None', marker='o', markersize=5, \
          color='silver', alpha=0.5, label='Galactic plane')
 ax.legend (bbox_to_anchor = (0.9, -0.1))
-
 fig.savefig (file_output, dpi=resolution_dpi)
