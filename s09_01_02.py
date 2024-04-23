@@ -19,19 +19,22 @@ u_deg = astropy.units.degree
 list_ra_deg = []
 list_dec_deg = []
 
-# # add data to list
-# with open(data_input, 'r') as f_read:
-#   for line in f_read:
-#     data = line.split(',')
-#     gal_l = float(data[0]) * u_deg   # glactic longitude
-#     gal_b = float(data[1]) * u_deg   # glactic latitude
+# add data to list
+with open(data_input, 'r') as f_read:
+  for line in f_read:
+    data = line.split(',')
+    gal_l = float(data[0])   # glactic longitude (deg)
+    gal_b = float(data[1])   # glactic latitude (deg)
 
-#     galactic_coords = astropy.coordinates.SkyCoord(l=gal_l, b=gal_b, frame='galactic')
-#     equatorial_coords = galactic_coords.transform_to('icrs')
-#     ra_deg = equatorial_coords.ra
-#     dec_deg = equatorial_coords.dec
-#     list_ra_deg.append(ra_deg)
-#     list_dec_deg.append(dec_deg)
+    galactic_coords = astropy.coordinates.SkyCoord(l=gal_l*u_deg, b=gal_b*u_deg, frame='galactic')
+    equatorial_coords = galactic_coords.transform_to('icrs')
+    ra_deg = equatorial_coords.ra
+    dec_deg = equatorial_coords.dec
+    list_ra_deg.append(ra_deg)
+    list_dec_deg.append(dec_deg)
+    list_ra_deg.append(gal_l)
+    list_dec_deg.append(gal_b)
+    print(f'{ra_deg}, {dec_deg}, {gal_l}, {gal_b}')
 
 # # change into numpy arrays
 # array_ra_deg = numpy.array(list_ra_deg)
@@ -63,7 +66,7 @@ ax.set_xlabel('Right Ascension [deg]')
 ax.set_ylabel('Declination [deg]')
 ax.set_title(f'Distribution of Galictic Hii regions on {date}', loc='right')
 # ax.plot(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), linestyle='None',
-#          marker='o', markersize=3, color='blue', alpha=0.1, label='Glactic Hii')
+#          marker='.', markersize=1, color='blue', alpha=0.1, label='Glactic Hii')
 # ax.scatter(array_ra_deg, array_dec_deg, marker='o', s=1, c=blue, \
 #           cmap=matplotlib.cm.Spectral, alpha=0.25)
 ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
