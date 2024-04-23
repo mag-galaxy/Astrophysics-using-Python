@@ -67,7 +67,7 @@ ax.set_ylabel('Declination [deg]')
 ax.set_title(f'Distribution of Galictic Hii regions on {date}', loc='right')
 # ax.plot(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), linestyle='None',
 #          marker='.', markersize=1, color='blue', alpha=0.1, label='Glactic Hii')
-ax.scatter(array_ra_deg, array_dec_deg, marker='o', c='blue')
+ax.scatter(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), marker='o', c='blue')
 ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
          color='yellow', alpha=0.5, label='Ecliptic plane')
 ax.plot (gal_ra, gal_dec, linestyle='None', marker='o', markersize=5, \
