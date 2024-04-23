@@ -20,9 +20,9 @@ list_dec_deg = []
 with open(data_input, 'r') as f_read:
   for line in f_read:
     data = line.split(',')
+    print(data[0] + ' ' + data[1])
     gal_l = float(data[0])    # glactic longitude
     gal_b = float(data[1])    # glactic latitude
-    print(gal_l + ' ' + gal_b)
     gal_coord = astropy.coordinates.Galactic(l = gal_l, b = gal_b)
     ra_deg = gal_coord.transform_to(astropy.coordinates.ICRS ()).ra.wrap_at(180.0*u_deg).radian
     dec_deg = gal_coord.transform_to(astropy.coordinates.ICRS ()).dec.radian    
