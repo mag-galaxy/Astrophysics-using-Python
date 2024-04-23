@@ -15,6 +15,8 @@ with urllib.request.urlopen (link) as fh_read:
         for line in fh_read:
             data_str = line.decode('utf-8')
             data_list = data_str.split(',')
+            if data_list[2]=="GLong<br>(deg.)":
+                continue
             f_write.write(data_list[2] + ',' + data_list[3] + '\n')
 f_write.close()
 #             gal_l = float(data_list[2])    # glactic longitude
