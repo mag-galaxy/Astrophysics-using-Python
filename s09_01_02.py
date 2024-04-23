@@ -34,7 +34,7 @@ with open(data_input, 'r') as f_read:
       ra_deg -= (360.0 * u_deg)
     list_ra_deg.append(ra_deg)    # equatorial coords (deg)
     list_dec_deg.append(dec_deg)  # equatorial coords (deg)
-    print(f'{ra_deg}, {dec_deg}, {gal_l}, {gal_b}')
+    print(f'{float(ra_deg)}, {float(dec_deg)}, {gal_l}, {gal_b}')
 
 # change into numpy arrays
 array_ra_deg = numpy.array(list_ra_deg)
