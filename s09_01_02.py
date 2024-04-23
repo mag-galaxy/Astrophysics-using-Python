@@ -22,8 +22,8 @@ list_dec_deg = []
 with open(data_input, 'r') as f_read:
   for line in f_read:
     data = line.split(',')
-    gal_l = float(data[0])   # glactic longitude (deg)
-    gal_b = float(data[1])   # glactic latitude (deg)
+    gal_l = float(data[0])   # galactic longitude (deg)
+    gal_b = float(data[1])   # galactic latitude (deg)
 
     # galactic coorddinates to equatorial coorddinates
     galactic_coords = astropy.coordinates.SkyCoord(l=gal_l*u_deg, b=gal_b*u_deg, frame='galactic')
@@ -60,7 +60,7 @@ ax = fig.add_subplot (111, projection='mollweide')        # use Mollweide projec
 ax.grid()
 ax.set_xlabel('Right Ascension [deg]')
 ax.set_ylabel('Declination [deg]')
-ax.set_title(f'Distribution of Galictic Hii regions on {date}', loc='right')
+ax.set_title(f'Distribution of Galactic Hii regions on {date}', loc='right')
 ax.plot(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), \
         linestyle='None', marker='.', markersize=5, color='blue')
 ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
