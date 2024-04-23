@@ -7,7 +7,7 @@ link = 'https://cdsarc.cds.unistra.fr/ftp/J/AJ/137/4186/table2.dat'    # URL of 
 file_sql = 'UBVRI.sql'
 
 with urllib.request.urlopen (link) as fh_read:
-  with open(file_sql, 'w'):
+  with open(file_sql, 'w') as fh_sql:
     sql_table = f'create table UBVRI (UBVRI text primary key, vmag real);\n'
     fh_sql.write(sql_table)
     
