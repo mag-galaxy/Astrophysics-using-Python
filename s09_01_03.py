@@ -7,7 +7,7 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 date = astropy.time.Time('2024-04-22 00:00:00')
-data_input = 'data.txt'
+data_input = 'data.txt'            # the file with galactic coords we need
 png_output = 'glactic_hii.png'     # plot and save as .png file
 resolution_dpi = 150
 
@@ -35,14 +35,10 @@ with open(data_input, 'r') as f_read:
       ra_deg -= (360.0)
     list_ra_deg.append(ra_deg)    # equatorial coords (deg)
     list_dec_deg.append(dec_deg)  # equatorial coords (deg)
-    # print(f'{ra_deg}, {dec_deg}, {gal_l}, {gal_b}')
 
 # change into numpy arrays
 array_ra_deg = numpy.array(list_ra_deg)
 array_dec_deg = numpy.array(list_dec_deg)
-
-print(array_ra_deg)
-print(array_dec_deg)
 
 # ecliptic plane
 ecl_lon = numpy.linspace(0.001, 359.999, 1000) * u_deg
@@ -73,5 +69,4 @@ ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
          color='yellow', alpha=0.5, label='Ecliptic plane')
 ax.plot (gal_ra, gal_dec, linestyle='None', marker='o', markersize=5, \
          color='silver', alpha=0.5, label='Galactic plane')
-
 fig.savefig(png_output, dpi=resolution_dpi)
