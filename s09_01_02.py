@@ -30,13 +30,11 @@ with open(data_input, 'r') as f_read:
     equatorial_coords = galactic_coords.transform_to('icrs')
     ra_deg = equatorial_coords.ra
     dec_deg = equatorial_coords.dec
-    if(ra_deg > 180.0 * u_deg):
-      ra_deg -= (360.0 * u_deg)
+    # if(ra_deg > 180.0 * u_deg):
+    #   ra_deg -= (360.0 * u_deg)
     list_ra_deg.append(ra_deg)    # equatorial coords (deg)
     list_dec_deg.append(dec_deg)  # equatorial coords (deg)
-    list_ra_deg.append(gal_l)
-    list_dec_deg.append(gal_b)
-    # print(f'{ra_deg}, {dec_deg}, {gal_l}, {gal_b}')
+    print(f'{ra_deg}, {dec_deg}, {gal_l}, {gal_b}')
 
 # change into numpy arrays
 array_ra_deg = numpy.array(list_ra_deg)
