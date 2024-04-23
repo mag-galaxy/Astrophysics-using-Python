@@ -12,7 +12,6 @@ png_output = 'glactic_hii.png'     # plot and save as .png file
 resolution_dpi = 150
 
 # units
-u_ha  = astropy.units.hourangle
 u_deg = astropy.units.degree
 
 # empty lists for storing data
