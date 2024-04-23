@@ -21,8 +21,8 @@ with open(data_input, 'r') as f_read:
   for line in f_read:
     data = line.split(',')
     print(data[0] + ' ' + data[1])
-    gal_l = float(data[0])    # glactic longitude
-    gal_b = float(data[1])    # glactic latitude
+    gal_l = float(data[0]) * u_deg   # glactic longitude
+    gal_b = float(data[1]) * u_deg   # glactic latitude
     gal_coord = astropy.coordinates.Galactic(l = gal_l, b = gal_b)
     ra_deg = gal_coord.transform_to(astropy.coordinates.ICRS ()).ra.wrap_at(180.0*u_deg).radian
     dec_deg = gal_coord.transform_to(astropy.coordinates.ICRS ()).dec.radian    
