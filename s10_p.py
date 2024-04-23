@@ -8,7 +8,7 @@ file_sql = 'UBVRI.sql'
 
 with urllib.request.urlopen (link) as fh_read:
   with open(file_sql, 'w'):
-    sql_table = f'create table UBVRI (UBVRI text primary key,'  vmag real);\n'
+    sql_table = f'create table UBVRI (UBVRI text primary key, vmag real);\n'
     fh_sql.write(sql_table)
     
     data_byte = fh_read.read().decode('utf-8)
