@@ -26,6 +26,7 @@ with open(data_input, 'r') as f_read:
     gal_l = float(data[0])   # glactic longitude (deg)
     gal_b = float(data[1])   # glactic latitude (deg)
 
+    # galactic coorddinates to equatorial coorddinates
     galactic_coords = astropy.coordinates.SkyCoord(l=gal_l*u_deg, b=gal_b*u_deg, frame='galactic')
     equatorial_coords = galactic_coords.transform_to('icrs')
     ra_deg = equatorial_coords.ra.deg
@@ -65,7 +66,8 @@ ax.grid()
 ax.set_xlabel('Right Ascension [deg]')
 ax.set_ylabel('Declination [deg]')
 ax.set_title(f'Distribution of Galictic Hii regions on {date}', loc='right')
-ax.scatter(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), marker='o', c='blue')
+ax.plot(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), linestyle='None', marker='.', markersize=1,color='blue')
+# ax.scatter(numpy.deg2rad(array_ra_deg), numpy.deg2rad(array_dec_deg), marker='o', c='blue')
 ax.plot (ecl_ra, ecl_dec, linestyle='None', marker='o', markersize=5, \
          color='yellow', alpha=0.5, label='Ecliptic plane')
 ax.plot (gal_ra, gal_dec, linestyle='None', marker='o', markersize=5, \
