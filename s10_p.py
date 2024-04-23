@@ -15,5 +15,5 @@ with urllib.request.urlopen (link) as fh_read:
       Name = line[0:11].strip()
       Vmag = float(line[38:44])
     
-    sql_add = f'insert into UBVRI values ("{Name}", {Vmag});\n'
-    fh_sql.write(sql_add)
+      sql_add = f'insert into UBVRI values ("{Name}", {Vmag});\n'
+      fh_sql.write(sql_add)
