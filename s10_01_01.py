@@ -8,9 +8,9 @@ file_csv = 'Leda_data_1.txt'
 file_fig = 'Leda_data.png'
 resolution_dpi = 150
 
-# dictionary to store data
-data_d = numpy.array([])
-data_v = numpy.array([])
+# store data
+data_d = []
+data_v = []
 
 with open(file_csv, 'r') as f_read:
   for line in f_read:
@@ -26,6 +26,9 @@ with open(file_csv, 'r') as f_read:
     data_d.append(dis_Mpc)
     data_v.append(vel)
 
+# change lists into numpy array
+arr_data_d = numpy.array(data_d)
+arr_data_v = numpy.array(data_v)
 print(data_d)
 print(data_v)
 
