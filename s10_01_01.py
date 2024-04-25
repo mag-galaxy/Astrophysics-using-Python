@@ -25,7 +25,10 @@ with open(file_csv, 'r') as f_read:
     vel = float(data[2])  # km/s
     data_d.append(dis_Mpc)
     data_v.append(vel)
-    
+
+print(data_d)
+print(data_v)
+
 # figure, canvas, axes object for plotting
 fig = matplotlib.figure.Figure()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
