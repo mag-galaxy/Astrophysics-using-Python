@@ -1,3 +1,4 @@
+# read csv file and plot
 import astropy.io.ascii
 import numpy
 import matplotlib.figure
