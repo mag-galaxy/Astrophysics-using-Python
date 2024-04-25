@@ -14,7 +14,7 @@ data_v = numpy.array([])
 
 with open(file_csv, 'r') as f_read:
   for line in f_read:
-    if(line.contains('#')):
+    if("#" in line):
        continue
     data = line.split(',')
     if(data[0] == 'objname'):
