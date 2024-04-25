@@ -1,4 +1,3 @@
-# read csv file and plot
 import urllib.request
 import numpy
 import astropy.coordinates
