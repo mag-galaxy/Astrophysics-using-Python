@@ -13,12 +13,7 @@ file_csv = 'Leda_data_1.txt'
 file_fig = 'Leda_data.png'
 resolution_dpi = 150
 
-# speed of light
-c = astropy.constants.c
-
 # units
-unit_m_per_s  = astropy.units.m / astropy.units.s
-unit_km_per_s = astropy.units.km / astropy.units.s
 u_km  = astropy.units.km
 u_Mpc = astropy.units.Mpc
 u_sec = astropy.units.s
@@ -64,15 +59,6 @@ H0_bestfit = popt[0]
 print(f'popt: {popt}')
 print(f'pcov: {pcov}')
 
-# # degree of freedom
-# dof = len(data_d) - len(init)
-# print(f"dof = {dof}")
-
-# # residual
-# residual = data_v - func(data_d, popt[0])
-# reduced_chi2 = (residual**2).sum () / dof
-# print(f"reduced chi^2 = {reduced_chi2}")
-
 # Hubble constant
 H0_err = numpy.sqrt(pcov[0][0])
 print(f"H0 = {H0_bestfit} +/- {H0_err} ({H0_err / H0_bestfit * 100.0} %)")
@@ -89,8 +75,8 @@ ax = fig.add_subplot(111)
 ax.set_xlabel('Distance [Mpc]')
 ax.set_ylabel('Velocity [km/s]')
 ax.grid ()
-ax.plot(arr_data_d, arr_data_v, linestyle='None', marker='o', \
-        markersize=3, color='blue',label='LEDA')
+ax.plot(data_d, data_v, linestyle='None', marker='o', markersize=2, \
+        color='blue', zorder=0.2, label='LEDA')
 label_fitting = f"best-fit line (H0={H0_bestfit:4.1f} km/sec/Mpc)"
 ax.plot(fitted_x, fitted_y, linestyle='--', linewidth=3, color='red', \
          zorder=0.1, label=label_fitting)
