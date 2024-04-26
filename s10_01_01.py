@@ -30,7 +30,8 @@ with open(file_csv, 'r') as f_read:
     if(data[0] == 'objname'):
       continue
     name = data[0]
-    dis_pc = 10 ** (float(data[1])/5.0 + 1.0)  # distance in parsecs = 10^(distance modulus/5+1)
+    # distance in parsecs = 10^(distance modulus/5+1)
+    dis_pc = 10 ** (float(data[1])/5.0 + 1.0)
     dis_Mpc = dis_pc * 10**-6
     vel = float(data[2])  # km/s
     data_d.append(dis_Mpc)
