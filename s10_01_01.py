@@ -64,7 +64,7 @@ H0_err = numpy.sqrt(pcov[0][0])
 print(f"H0 = {H0_bestfit} +/- {H0_err} ({H0_err / H0_bestfit * 100.0} %)")
 
 # fitted curve
-fitted_x = numpy.linspace(0.0, 6000.0, 12000)
+fitted_x = numpy.linspace(0.0, 5000.0, 10000)
 fitted_y = func(fitted_x, H0_bestfit)
 
 # figure, canvas, axes object for plotting
@@ -83,9 +83,7 @@ ax.plot(fitted_x, fitted_y, linestyle='--', linewidth=3, color='red', \
 ax.legend()
 fig.savefig(file_fig, dpi = resolution_dpi)
 
-
 hubble_constant_with_units = H0_bestfit * u_km / u_sec / u_Mpc
-# calculation of Hubble time
 hubble_time = 1.0 / hubble_constant_with_units
 
 print (f'Hubble constant = {hubble_constant_with_units}')
