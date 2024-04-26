@@ -61,17 +61,17 @@ H0_bestfit = popt[0]
 print(f'popt: {popt}')
 print(f'pcov: {pcov}')
 
-# degree of freedom
-dof = len(data_d) - len(init)
-print(f"dof = {dof}")
+# # degree of freedom
+# dof = len(data_d) - len(init)
+# print(f"dof = {dof}")
 
-# residual
-residual = data_v - func(data_d, popt[0])
-reduced_chi2 = (residual**2).sum () / dof
-print(f"reduced chi^2 = {reduced_chi2}")
+# # residual
+# residual = data_v - func(data_d, popt[0])
+# reduced_chi2 = (residual**2).sum () / dof
+# print(f"reduced chi^2 = {reduced_chi2}")
 
-# error of H0
-H0_err = numpy.sqrt (pcov[0][0])
+# Hubble constant
+H0_err = numpy.sqrt(pcov[0][0])
 print(f"H0 = {H0_bestfit} +/- {H0_err} ({H0_err / H0_bestfit * 100.0} %)")
 
 # fitted curve
