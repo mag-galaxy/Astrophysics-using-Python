@@ -19,7 +19,10 @@ c = astropy.constants.c
 # units
 unit_m_per_s  = astropy.units.m / astropy.units.s
 unit_km_per_s = astropy.units.km / astropy.units.s
-unit_Mpc      = astropy.units.Mpc
+u_km  = astropy.units.km
+u_Mpc = astropy.units.Mpc
+u_sec = astropy.units.s
+u_yr  = astropy.units.yr
 
 # store data
 data_d = []
@@ -93,3 +96,11 @@ ax.plot(fitted_x, fitted_y, linestyle='--', linewidth=3, color='red', \
          zorder=0.1, label=label_fitting)
 ax.legend()
 fig.savefig(file_fig, dpi = resolution_dpi)
+
+
+hubble_constant_with_units = H0_bestfit * u_km / u_sec / u_Mpc
+# calculation of Hubble time
+hubble_time = 1.0 / hubble_constant_with_units
+
+print (f'Hubble constant = {hubble_constant_with_units}')
+print (f'Estimation of age of Universe = {hubble_time.to (u_yr):g}')
