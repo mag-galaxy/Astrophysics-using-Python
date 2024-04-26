@@ -1,4 +1,3 @@
-# read csv file and plot
 import astropy.io.ascii
 import astropy.units
 import astropy.constants
