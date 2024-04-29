@@ -43,7 +43,7 @@ arr_data_v = numpy.array(data_v)
 print('finish reading data')
 
 # initial values of coefficient
-H0 = 1000.0
+H0 = 100.0
 init = [H0]
 
 # function (a line go through O(0,0))
