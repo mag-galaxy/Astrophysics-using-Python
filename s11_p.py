@@ -8,6 +8,7 @@ file_output = 'earthquack_April.png'
 resolution = 150
 all_mag = []
 
+i = 0
 with open(file_csv, 'r') as f_read:
   for line in f_read:
     if i<2:
