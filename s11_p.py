@@ -10,11 +10,10 @@ all_mag = []
 
 with open(file_csv, 'r') as f_read:
   for line in f_read:
-    data = line.decode('utf-8')
     if i<2:
       ++i
       continue
-    mag = (data.split(','))[4]
+    mag = (line.split(','))[4]
     all_mag.append(mag)
 
 mag_array = numpy.array(all_mag)
@@ -25,7 +24,7 @@ hist_y = numpy.zeros(4, dtype='int64')
 for i in range(len(all_mag)):
   if(mag_array[i] < 3 or mag_array[i] > 7):
     continue
-  hist_y[int(mag_array[i]-3)] += 1
+  hist_y[int(float(mag_array[i])-3)] += 1
 
 for i in range(3):
   bin0 = 3 + i
