@@ -13,13 +13,11 @@ with open(file_csv, 'r') as f_read:
     data = line.split(',')
     try:
       mag = float(data[4])
-      print(mag)
       all_mag.append(mag)
     except:
       continue
 
 mag_array = numpy.array(all_mag)
-print(mag_array)
 
 hist_x = numpy.linspace(3, 7, 5)
 hist_y = numpy.zeros(5, dtype='int64')
@@ -32,7 +30,7 @@ for i in range(len(all_mag)):
 for i in range(4):
   bin0 = 3 + i
   bin1 = 3 + i + 1
-  print(f'{bin0}~{bin1} {hist_y}')
+  print(f'{bin0}~{bin1} {hist_y[i]}')
 
 fig = matplotlib.figure.Figure()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
