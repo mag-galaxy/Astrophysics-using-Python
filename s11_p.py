@@ -12,11 +12,10 @@ i = 0
 with open(file_csv, 'r') as f_read:
   for line in f_read:
     data = line.split(',')
-    print(data)
     if i<2:
       ++i
       continue
-    mag = data[5]
+    mag = float(data[5])
     # print(mag)
     all_mag.append(mag)
 
