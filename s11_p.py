@@ -19,8 +19,8 @@ with open(file_csv, 'r') as f_read:
 
 mag_array = numpy.array(all_mag)
 
-hist_x = numpy.linspace(3, 7, 4)
-hist_y = numpy.zeros(4, dtype='int64')
+hist_x = numpy.linspace(3, 7, 5)
+hist_y = numpy.zeros(5, dtype='int64')
 
 for i in range(len(all_mag)):
   if(mag_array[i] < 3 or mag_array[i] > 7):
