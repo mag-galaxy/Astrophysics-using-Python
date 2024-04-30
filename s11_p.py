@@ -11,11 +11,12 @@ all_mag = []
 i = 0
 with open(file_csv, 'r') as f_read:
   for line in f_read:
-    print(line)
+    data = line.split(',')
+    print(data)
     if i<2:
       ++i
       continue
-    mag = (line.split(','))[5]
+    mag = data[5]
     # print(mag)
     all_mag.append(mag)
 
