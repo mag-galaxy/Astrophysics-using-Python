@@ -1,4 +1,3 @@
-import astropy.io.ascii
 import numpy
 import matplotlib.figure
 import matplotlib.backends.backend_agg
