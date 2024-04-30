@@ -18,6 +18,7 @@ with open(file_csv, 'r') as f_read:
     all_mag.append(mag)
 
 mag_array = numpy.array(all_mag)
+print(mag_array)
 
 hist_x = numpy.linspace(3, 7, 5)
 hist_y = numpy.zeros(5, dtype='int64')
@@ -27,7 +28,7 @@ for i in range(len(all_mag)):
     continue
   hist_y[int(float(mag_array[i])-3)] += 1
 
-for i in range(3):
+for i in range(4):
   bin0 = 3 + i
   bin1 = 3 + i + 1
   print(f'{bin0}~{bin1} {hist_y}')
