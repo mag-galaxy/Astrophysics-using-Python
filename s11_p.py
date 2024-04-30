@@ -4,7 +4,8 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 file_csv = 'earthquack.csv'
-
+file_output = 'earthquack_April.png'
+resolution = 150
 all_mag = []
 
 with open(file_csv, 'r') as f_read:
@@ -39,6 +40,5 @@ ax.set_ylabel('number of cases')
 ax.set_xlim(3, 7)
 ax.bar(hist_x, hist_y, 1, edgecolor='black', linewidth=0.3, align='edge',\
       label = 'magnitude of earthquack in April 2024 in Taiwan')
-
-# table = astropy.io.ascii.read (file_csv, format='csv')
-# print(f'{table['規模']}')
+ax.legend()
+fig.savefig(file_output, dpi=resolution)
