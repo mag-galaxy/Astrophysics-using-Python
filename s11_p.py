@@ -15,6 +15,7 @@ with open(file_csv, 'r') as f_read:
       ++i
       continue
     mag = (line.split(','))[4]
+    print(mag)
     all_mag.append(mag)
 
 mag_array = numpy.array(all_mag)
