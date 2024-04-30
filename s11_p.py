@@ -8,16 +8,15 @@ file_output = 'earthquack_April.png'
 resolution = 150
 all_mag = []
 
-i = 0
 with open(file_csv, 'r') as f_read:
   for line in f_read:
     data = line.split(',')
-    if i<2:
-      ++i
+    try:
+      mag = float(data[4])
+      print(mag)
+      all_mag.append(mag)
+    except:
       continue
-    mag = float(data[5])
-    # print(mag)
-    all_mag.append(mag)
 
 mag_array = numpy.array(all_mag)
 print(mag_array)
