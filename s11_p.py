@@ -1,6 +1,44 @@
 import astropy.io.ascii
+import numpy
+import matplotlib.figure
+import matplotlib.backends.backend_agg
 
 file_csv = 'earthquack.csv'
-table = astropy.io.ascii.read (file_csv, format='csv')
 
-print(f'{table['規模']}')
+all_mag = []
+
+with open(file_csv, 'r') as f_read:
+  for line in f_read:
+    data = line.decode('utf-8')
+    if i<2:
+      ++i
+      continue
+    mag = (data.split(','))[4]
+    all_mag.append(mag)
+
+mag_array = numpy.array(all_mag)
+
+hist_x = numpy.linspace(3, 7, 4)
+hist_y = numpy.zeros(4, dtype='int64')
+
+for i in range(len(all_mag)):
+  if(mag_array[i] < 3 or mag_array[i] > 7):
+    continue
+  hist_y[int(mag_array[i]-3)] += 1
+
+for i in range(3):
+  bin0 = 3 + i
+  bin1 = 3 + i + 1
+  print(f'{bin0}~{bin1} {hist_y}')
+
+fig = matplotlib.figure.Figure()
+canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
+ax = fig.add_subplot(111)
+ax.set_xlabel('madnitude')
+ax.set_ylabel('number of cases')
+ax.set_xlim(3, 7)
+ax.bar(hist_x, hist_y, 1, edgecolor='black', linewidth=0.3, align='edge',\
+      label = 'magnitude of earthquack in April 2024 in Taiwan')
+
+# table = astropy.io.ascii.read (file_csv, format='csv')
+# print(f'{table['規模']}')
