@@ -15,7 +15,7 @@ with open(file_csv, 'r') as f_read:
     if i<2:
       ++i
       continue
-    mag = (line.split(','))[4]
+    mag = (line.split(','))[5]
     # print(mag)
     all_mag.append(mag)
 
