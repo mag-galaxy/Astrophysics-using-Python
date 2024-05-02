@@ -13,8 +13,8 @@ astroquery.gaia.Gaia.MAIN_GAIA_TABLE = "gaiadr3.gaia_source"
 astroquery.gaia.Gaia.ROW_LIMIT = -1
 
 # parameters
-target        = "M3"
-file_output   = "m3.vot.gz"
+target        = "M25"
+file_output   = "m25.vot.gz"
 radius_arcmin = 30.0
 radius_deg    = radius_arcmin / 60.0
 
@@ -68,6 +68,4 @@ print (job)
 
 # getting results
 results = job.get_results ()
-
-# printing results
 print (results)
