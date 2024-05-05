@@ -40,15 +40,6 @@ coord = astropy.coordinates.SkyCoord(tar_ra, tar_dec, frame='icrs', unit=(u_ha, 
 ra_deg = coord.ra.deg
 dec_deg = coord.dec.deg
 
-# coordinate in hms and dms format
-ra_hms = coord.ra.to_string(u_ha)    # hr:min:sec
-dec_dms = coord.dec.to_string(u_deg, alwayssign=True)    # deg:arcmin:arcsec
-
-# printing result
-print (f"target: {target}")
-print (f" RA  = {ra_hms:>14s} = {ra_deg:10.6f} deg")
-print (f" Dec = {dec_dms:>14s} = {dec_deg:+10.6f} deg")
-
 # command for database query
 table = f"gaiadr3.gaia_source"
 field = f"*"
@@ -61,7 +52,5 @@ print(f"SQL query for Gaia database:\n {query}")
 job = astroquery.gaia.Gaia.launch_job_async(query, dump_to_file=True, \
                   output_format="votable_gzip", output_file=file_output)
 print (job)
-
-# getting results
 results = job.get_results ()
 print (results)
