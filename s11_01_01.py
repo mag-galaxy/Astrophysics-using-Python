@@ -21,7 +21,7 @@ args = parser.parse_args ()
 
 # get value from argument
 target = args.target
-file_output = args.output
+file_output = args.output    # output in a gzip file
 radius_arcmin = args.radius
 radius_deg = radius_arcmin / 60.0
 
@@ -55,11 +55,10 @@ field = f"*"
 point = f"POINT({ra_deg:8.4f},{dec_deg:8.4f})"
 circle = f"CIRCLE(ra,dec,{radius_deg})"
 query = f"SELECT {field} from {table} WHERE 1=CONTAINS({point},{circle});"
-print(f"SQL query for Gaia database:")
-print(f" {query}")
+print(f"SQL query for Gaia database:\n {query}")
 
 # sending a job to Gaia database
-job = astroquery.gaia.Gaia.launch_job_async (query, dump_to_file=True, \
+job = astroquery.gaia.Gaia.launch_job_async(query, dump_to_file=True, \
                                              output_format="votable_gzip", \
                                              output_file=file_output)
 
