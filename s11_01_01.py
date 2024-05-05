@@ -59,14 +59,9 @@ print(f"SQL query for Gaia database:\n {query}")
 
 # sending a job to Gaia database
 job = astroquery.gaia.Gaia.launch_job_async(query, dump_to_file=True, \
-                                             output_format="votable_gzip", \
-                                             output_file=file_output)
-
-# printing query to Gaia database
+                  output_format="votable_gzip", output_file=file_output)
 print (job)
 
 # getting results
 results = job.get_results ()
-
-# printing results
 print (results)
