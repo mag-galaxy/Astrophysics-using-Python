@@ -5,12 +5,12 @@ import matplotlib.backends.backend_agg
 
 # construction of parser object for argparse
 descr  = 'visualisation of proper motion of stars'
-parser = argparse.ArgumentParser (description=descr)
+parser = argparse.ArgumentParser(description=descr)
 
 # adding arguments
-parser.add_argument ('-i', '--input', help='input file name')
-parser.add_argument ('-o', '--output', help='output file name')
-parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+parser.add_argument('-i', '--input', help='input file name')
+parser.add_argument('-o', '--output', help='output file name')
+parser.add_argument('-r', '--resolution', type=float, default=150.0, \
                      help='resolution in DPI (default: 150)')
 
 # command-line argument analysis
