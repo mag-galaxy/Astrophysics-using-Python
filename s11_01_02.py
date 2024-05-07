@@ -45,7 +45,6 @@ for i in range(len(data_parallax)):
 fig = matplotlib.figure.Figure()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
 ax = fig.add_subplot(111)
-# bin_range = (x_min, x_max)      # set range of bins
 ax.set_xlabel('Distance [pc]')
 ax.set_ylabel('Number of Stars')
 ax.set_xlim(x_min, x_max)
