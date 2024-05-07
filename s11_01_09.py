@@ -13,25 +13,16 @@ parser.add_argument('-t', '--title', help='title of plot')
 args = parser.parse_args ()
 
 # input parameters
-file_input     = args.input
-file_output    = args.output
-file_ms        = args.mainsequence
-title          = args.title
+file_input = args.input
+file_output = args.output
+file_ms = args.mainsequence
+title = args.title
 
 # lists to store data
-list_id       = []
-list_ra       = []
-list_dec      = []
 list_parallax = []
-list_pmra     = []
-list_pmdec    = []
-list_rv       = []
-list_b        = []
-list_g        = []
-list_r        = []
-list_br       = []
-list_bg       = []
-list_gr       = []
+list_g = []
+list_br = []
+
 
 # opening file
 with open (file_input, 'r') as fh:
