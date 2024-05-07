@@ -12,7 +12,7 @@ parser.add_argument('-m', '--mainsequence', default='ms.data', help='main-sequen
 parser.add_argument('-t', '--title', help='title of plot')
 args = parser.parse_args()
 
-# input parameters
+# get value from argument
 file_input = args.input
 file_output = args.output
 file_ms = args.mainsequence
@@ -31,10 +31,10 @@ with open (file_input, 'r') as fh:
         if (line[0] == '#'):
             continue
         line = line.strip()  # removing new line at the end of the line
-        data = line.split()
-        list_parallax.append(float(data[3]))
-        list_g.append(float(data[8]))
-        list_br.append(float(data[10]))
+        data = line.split()  # split using space
+        list_parallax.append(float(data[0]))
+        list_g.append(float(data[3]))
+        list_br.append(float(data[4]))
 
 # change into numpy arrays
 data_parallax = numpy.array(list_parallax)
