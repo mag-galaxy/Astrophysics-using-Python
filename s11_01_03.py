@@ -48,10 +48,9 @@ for i in range(len(data_parallax)):
     # and parallax SNR less than 10.0
     if ( (data_parallax[i] <= 0.0) or (numpy.isnan (data_parallax[i]) ) \
          or (data_p_snr[i] < 10.0) ):
-        data_distance.append(-1.0)
+        data_distance = numpy.append(data_distance, -1.0)
     else:
-        data_distance.append(1000.0 / data_parallax[i])
-
+        data_distance = numpy.append(data_distance, 1000.0 / data_parallax[i])
 # writing data into list file
 with open (file_output, 'w') as fh:
     header = f'# star ID, RA, Dec, parallax, pmra, pmdec, radial velocity' \
