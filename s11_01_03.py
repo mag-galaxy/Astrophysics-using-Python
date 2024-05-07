@@ -5,12 +5,12 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # using argparse
-descr = 'selecting stars by distance criteria'
+descr = 'selecting stars in given distance range'
 parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-i', '--input', help='input file name (gzip)')
 parser.add_argument('-o', '--output', help='output file name (list)')
-parser.add_argument('-a', '--min', type=float, help='minimum distance value')
-parser.add_argument('-b', '--max', type=float, help='maximum distance value')
+parser.add_argument('-a', '--min', type=float, help='min. dist. value')
+parser.add_argument('-b', '--max', type=float, help='max. dist. value')
 args = parser.parse_args()
 
 # get value from argument
@@ -42,7 +42,7 @@ data_r_snr = numpy.array(table['phot_rp_mean_flux_over_error'])
 data_p_snr = numpy.array(table['parallax_over_error'])
 
 # filter data
-data_distance = numpy.array([])
+data_distance = numpy.array([])    # empty numpy array for storing dist. data
 for i in range(len(data_parallax)):
     # rejecting stars of negative parallax, no measurement of parallax,
     # and parallax SNR less than 10.0
