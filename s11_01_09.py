@@ -18,37 +18,33 @@ file_output = args.output
 file_ms = args.mainsequence
 title = args.title
 
-# lists to store data
+# empty lists
 list_parallax = []
 list_g = []
 list_br = []
+list_ms_colour = []
+list_ms_absmag = []
 
-
-# opening file
+# opening candidate list file
 with open (file_input, 'r') as fh:
     for line in fh:
         if (line[0] == '#'):
             continue
-        # removing new line at the end of the line
-        line = line.strip()
+        line = line.strip()  # removing new line at the end of the line
         data = line.split()
         list_parallax.append(float(data[3]))
         list_g.append(float(data[8]))
         list_br.append(float(data[10]))
 
-# making numpy arrays
+# change into numpy arrays
 data_parallax = numpy.array(list_parallax)
 data_g = numpy.array(list_g)
 data_br = numpy.array(list_br)
 
 # calculation of g-band absolute magnitude
-data_g_abs = data_g + 5.0 * numpy.log10 (data_parallax / 1000.0) + 5.0
+data_g_abs = data_g + 5.0 * numpy.log10(data_parallax/1000.0) + 5.0
 
-# making empty lists for storing data
-list_ms_colour = []
-list_ms_absmag = []
-
-# opening data file
+# opening main sequence data file, add necessary data into lists
 with open (file_ms, 'r') as fh_ms:
     for line in fh_ms:
         line = line.strip()
@@ -57,10 +53,8 @@ with open (file_ms, 'r') as fh_ms:
         if (line[0] == '#'):
             continue
         fields = line.split ()
-        # spectral type
-        sptype = fields[0]
-        # effective temperature
-        teff = float (fields[1])
+        sptype = fields[0]        # spectral type
+        teff = float(fields[1])   # effective temperature
         # Gaia (b-r) colour index
         try:
             colour_br = float (fields[11])
@@ -71,19 +65,18 @@ with open (file_ms, 'r') as fh_ms:
             absmag_g = float (fields[13])
         except:
             absmag_g = 999.999
-        # appending data to lists
         if ((colour_br < 100.0) and (absmag_g < 100.0)):
-            list_ms_colour.append (colour_br)
-            list_ms_absmag.append (absmag_g)
+            list_ms_colour.append(colour_br)
+            list_ms_absmag.append(absmag_g)
 
-# making numpy arrays
-data_ms_colour = numpy.array (list_ms_colour)
-data_ms_absmag = numpy.array (list_ms_absmag)
+# change into numpy arrays
+data_ms_colour = numpy.array(list_ms_colour)
+data_ms_absmag = numpy.array(list_ms_absmag)
 
 # objects for plotting
-fig = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax = fig.add_subplot (111)
+fig = matplotlib.figure.Figure()
+canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
+ax = fig.add_subplot(111)
 ax.set_xlabel('(b-r) colour index')
 ax.set_ylabel('g absolute magnitude [mag]')
 ax.grid()
@@ -91,11 +84,9 @@ ax.set_title(title)
 ax.set_box_aspect(aspect=1.0)
 ax.set_xlim(-1.0, 6.0)
 ax.set_ylim(18.0, -3.0)
-ax.plot(data_br, data_g_abs, \
-         linestyle='None', marker='o', markersize=3, color='blue', \
-         zorder=0.2, label='Gaia DR3 stars')
-ax.plot(data_ms_colour, data_ms_absmag, \
-         linestyle='-', linewidth=10, color='orange', alpha=0.5, \
-         zorder=0.1, label='Typical main-sequence stars')
+ax.plot(data_br, data_g_abs, linestyle='None', marker='o', \
+        markersize=3, color='blue', zorder=0.2, label='Gaia DR3 stars')
+ax.plot(data_ms_colour, data_ms_absmag, linestyle='-', linewidth=10, \
+        color='orange', alpha=0.5, zorder=0.1, label='Typical main-sequence stars')
 ax.legend (bbox_to_anchor=(1.05, 0.95), loc='upper left')
 fig.savefig (file_output, dpi=150, bbox_inches="tight")
