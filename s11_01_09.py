@@ -10,7 +10,7 @@ parser.add_argument('-i', '--input', help='input file name')
 parser.add_argument('-o', '--output', help='output file name')
 parser.add_argument('-m', '--mainsequence', default='ms.data', help='main-sequence data')
 parser.add_argument('-t', '--title', help='title of plot')
-args = parser.parse_args ()
+args = parser.parse_args()
 
 # input parameters
 file_input = args.input
@@ -37,14 +37,9 @@ with open (file_input, 'r') as fh:
         list_br.append(float(data[10]))
 
 # making numpy arrays
-data_parallax = numpy.array (list_parallax)
-data_g        = numpy.array (list_g)
-data_br       = numpy.array (list_br)
-
-# clearing lists
-list_parallax.clear ()
-list_g.clear ()
-list_br.clear ()
+data_parallax = numpy.array(list_parallax)
+data_g = numpy.array(list_g)
+data_br = numpy.array(list_br)
 
 # calculation of g-band absolute magnitude
 data_g_abs = data_g + 5.0 * numpy.log10 (data_parallax / 1000.0) + 5.0
