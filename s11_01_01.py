@@ -33,7 +33,7 @@ u_ha = astropy.units.hourangle
 result_simbad = astroquery.simbad.Simbad.query_object(target)
 tar_ra = result_simbad['RA'][0]
 tar_dec = result_simbad['DEC'][0]
-coord = astropy.coordinates.SkyCoord(tar_ra, tar_dec, frame='icrs', unit=(u_ha, u_deg) )
+coord = astropy.coordinates.SkyCoord(tar_ra, tar_dec, frame='icrs', unit=(u_ha, u_deg))
 
 # coordinate in degree
 ra_deg = coord.ra.deg
@@ -50,5 +50,5 @@ print(f"SQL query for Gaia database:\n\t{query}")
 # sending a job to Gaia database
 job = astroquery.gaia.Gaia.launch_job_async(query, dump_to_file=True, \
                   output_format="votable_gzip", output_file=file_output)
-results = job.get_results ()
+results = job.get_results()
 print (results)
