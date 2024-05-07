@@ -25,10 +25,10 @@ n_bins = args.nbins
 table = astropy.io.votable.parse_single_table(file_votable).to_table()
 
 # data
-data_ra        = numpy.array(table['ra'])
-data_dec       = numpy.array(table['dec'])
+data_ra = numpy.array(table['ra'])
+data_dec = numpy.array(table['dec'])
 data_parallax  = numpy.array(table['parallax'])
-data_p_snr     = numpy.array(table['parallax_over_error'])
+data_p_snr = numpy.array(table['parallax_over_error'])
 
 # distance
 data_distance = numpy.array([])
@@ -37,9 +37,9 @@ for i in range(len(data_parallax)):
     # and parallax SNR less than 10.0
     if ((data_parallax[i] <= 0.0) or (numpy.isnan(data_parallax[i]) ) \
          or (data_p_snr[i] < 10.0)):
-        data_distance.append(-1.0)
+        data_distance = numpy.append(data_distance, -1.0)
     else:
-        data_distance.append(1000.0 / data_parallax[i])
+        data_distance = numpy.append(data_distance, 1000.0 / data_parallax[i])
 
 # objects for plotting
 fig = matplotlib.figure.Figure()
