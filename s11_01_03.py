@@ -42,21 +42,21 @@ data_r_snr = numpy.array(table['phot_rp_mean_flux_over_error'])
 data_p_snr = numpy.array(table['parallax_over_error'])
 
 # filter data
-data_distance = numpy.array([])    # empty numpy array for storing dist. data
+data_dis = numpy.array([])    # empty numpy array for storing dist. data
 for i in range(len(data_parallax)):
     # rejecting stars of negative parallax, no measurement of parallax,
     # and parallax SNR less than 10.0
     if ( (data_parallax[i] <= 0.0) or (numpy.isnan (data_parallax[i]) ) \
          or (data_p_snr[i] < 10.0) ):
-        data_distance = numpy.append(data_distance, -1.0)
+        data_dis = numpy.append(data_dis, -1.0)
     else:
-        data_distance = numpy.append(data_distance, 1000.0 / data_parallax[i])
+        data_dis = numpy.append(data_dis, 1000.0 / data_parallax[i])
 # writing data into list file
 with open (file_output, 'w') as fh:
     header = f'# star ID, RA, Dec, parallax, pmra, pmdec, radial velocity' \
         + f' b mag, g mag, r mag, b-r, b-g, g-r\n'
     fh.write(header)
-    for i in range (len(data_distance)):
+    for i in range (len(data_dis)):
         # rejecting stars of low signal-to-noise ratio
         if(data_b_snr[i] < 10.0):
             continue
@@ -65,8 +65,7 @@ with open (file_output, 'w') as fh:
         if(data_r_snr[i] < 10.0):
             continue
         # select data in the given range
-        if((data_distance[i] >= dist_min) \
-             and (data_distance[i] <= dist_max)):
+        if(data_dis[i] >= dist_min and data_dis[i] <= dist_max):
             record = f"{data_id[i]:19d}" \
                 + f" {data_ra[i]:10.6f} {data_dec[i]:+10.6f}" \
                 + f" {data_parallax[i]:10.6f}" \
