@@ -11,15 +11,10 @@ list_url = [
 # download Kepler data
 for url_data in list_url:
     file_output_name = url_data.split('/')[-1]
-    print (f'Now, fetching {url_data}...')
     with urllib.request.urlopen(url_data) as fh_read:
         data_byte = fh_read.read ()
-
-    print (f'Finished fetching {url_data}!')
-    print (f'Now, writing data into file "{file_output_name}"...')
 
     # write data
     with open (file_output_name, 'wb') as fh_write:
         fh_write.write (data_byte)
-
     print (f'Finished writing data into file "{file_output_name}"!')
