@@ -26,13 +26,12 @@ with open (file_data, 'r') as fh:
             continue
         line = line.strip()
         all_data = line.split()
-        # (datetime_str, mjd_str, flux_str, err_str) = line.split ()
         mjd = float(all_data[1])
         flux = float(all_data[2]) / 10**6
         err = float(all_data[3]) / 10**6
-        data_mjd  = numpy.append (data_mjd, mjd)
-        data_flux = numpy.append (data_flux, flux)
-        data_err  = numpy.append (data_err, err)
+        data_mjd = numpy.append(data_mjd, mjd)
+        data_flux = numpy.append(data_flux, flux)
+        data_err = numpy.append(data_err, err)
  
 # objects for plotting
 fig = matplotlib.figure.Figure()
