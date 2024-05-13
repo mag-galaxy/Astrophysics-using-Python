@@ -31,7 +31,7 @@ with open (file_data, 'r') as fh:
         line = line.strip()
         all_data = line.split()
         # (datetime_str, mjd_str, flux_str, err_str) = line.split()
-        if (flux_str == 'nan'):
+        if (all_data[2] == 'nan'):
             continue
         mjd = float(all_data[1])
         flux = float(all_data[2])
