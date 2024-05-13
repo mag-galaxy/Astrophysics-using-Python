@@ -5,7 +5,7 @@ import numpy
 descr = 'baseline correction'
 parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-i', type=str, default="in.data", help='input file name (data)')
-parser.add_argument('-o', type=str, default="out.eps", help='output file name (data)')
+parser.add_argument('-o', type=str, default="out.data", help='output file name (data)')
 parser.add_argument('-a', type=float, default=0, help='coe a')
 parser.add_argument('-b', type=float, default=0, help='coe b')
 args = parser.parse_args()
