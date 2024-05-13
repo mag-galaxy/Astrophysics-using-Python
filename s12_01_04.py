@@ -46,11 +46,9 @@ with open (file_data, 'r') as fh:
         if (mjd > mjd_max):
             mjd_max = mjd
 
-# coefficients of fitting line
+# coefficients and function of fitting line
 a = 1.0
 b = 1.0 * 10**6
-
-# function of fitting line
 def func(x, a, b):
     y = -a * x + b
     return y
@@ -59,14 +57,9 @@ def func(x, a, b):
 popt, pcov = scipy.optimize.curve_fit(func, data_mjd, data_flux, \
                                        sigma=data_err, p0=[a, b])
 
-# fitted result
-print(f"popt: {popt}")
-print(f"pcov: {pcov}")
-
+# print fitted result
 a_fitted = popt[0]
 b_fitted = popt[1]
-
-# errors of a and b
 a_err = numpy.sqrt(pcov[0][0])
 b_err = numpy.sqrt(pcov[1][1])
 print(f"a = {a_fitted} +/- {a_err} ({a_err / a_fitted * 100.0} %)")
@@ -87,4 +80,4 @@ ax.plot(data_mjd, data_flux, linestyle='-', linewidth=3, \
 ax.plot(fitted_x, fitted_y, linestyle=':', linewidth=5, \
         color='red', label='Baseline')
 ax.legend()
-fig.savefig (file_fig, dpi=150)
+fig.savefig(file_fig, dpi=150)
