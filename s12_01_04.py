@@ -46,9 +46,9 @@ with open (file_data, 'r') as fh:
         if (mjd > mjd_max):
             mjd_max = mjd
 
-# coefficients 
+# coefficients of fitting line
 a = 1.0
-b = 1.7 * 10**6
+b = 1.0 * 10**6
 
 # function of fitting line
 def func(x, a, b):
