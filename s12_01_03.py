@@ -4,10 +4,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # using argparse
-descr  = 'plotting time-series data taken by Kepler Space Telescope'
+descr = 'plotting time-series data taken by Kepler Space Telescope'
 parser = argparse.ArgumentParser (description=descr)
 parser.add_argument('-i', type=str, default="in.data", help='input file name (data)')
-parser.add_argument('-o', type=str, default="out.eps", help='output file name (png)')
+parser.add_argument('-o', type=str, default="out.png", help='output file name (png)')
 args = parser.parse_args()
 
 # get value from argument
