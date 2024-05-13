@@ -30,4 +30,4 @@ with open(output_file, 'w') as fh:
         for i in range(len(data_datetime)):
             line = f"{data_datetime[i]} {data_mjd[i]:15.8f}" \
                 + f" {data_flux[i]:15.6f} {data_err[i]:15.6f}\n"
-            fh.write (line)
+            fh.write(line)
