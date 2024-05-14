@@ -55,12 +55,12 @@ freq, power = astropy.timeseries.LombScargle(data_mjd, data_mag)\
 
 # wrtie data into output file
 with open (output_data, 'w') as fh_write:
-    header  = f"# result of period search by Lomb-Scargle periodogram\n\n"
+    header  = f"# result of period search by Lomb-Scargle periodogram\n"
     header += f"# minimum trial period = {per_min_min} min = {per_min_hr} hr\n"
     header += f"# maximum trial period = {per_max_min} min = {per_max_hr} hr\n"
-    header += f"# samples_per_peak     = {n}\n\n"
+    header += f"# samples_per_peak     = {n}\n"
     header += f"# frequency in cycle day^-1, period in day, period in hr, "
-    header += f"period in min, power\n\n"
+    header += f"period in min, power\n"
     fh_write.write(header)
 
     for i in range(len(freq)):
