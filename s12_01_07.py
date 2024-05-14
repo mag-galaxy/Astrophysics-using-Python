@@ -32,8 +32,6 @@ with open (file_data, 'r') as fh:
             continue
         line = line.strip()
         all_data = lint.split()
-        (freq_str, per_day_str, per_hr_str, per_min_str, power_str) \
-            = line.split ()
         freq = float(all_data[0])
         per_day = float(all_data[1])
         per_hr = float(all_data[2])
