@@ -7,8 +7,8 @@ import matplotlib.backends.backend_agg
 # using argparse
 descr = 'baseline fitting'
 parser = argparse.ArgumentParser(description=descr)
-parser.add_argument ('-i', type=str, default="in.data", help='input file name (data)')
-parser.add_argument ('-o', type=str, default="out.png", help='output file name (png)')
+parser.add_argument('-i', type=str, default="in.data", help='input file name (data)')
+parser.add_argument('-o', type=str, default="out.png", help='output file name (png)')
 args = parser.parse_args()
 
 # get value from argument
@@ -47,9 +47,9 @@ with open (file_data, 'r') as fh:
 
 # coefficients and function of fitting line
 a = 1.0
-b = 1.0 * 10**6
+b = 1.02 * 10**6
 def func(x, a, b):
-    y = -a * x + b
+    y = -a * x + b    # a line with negative slope
     return y
 
 # least-squares fitting
@@ -61,12 +61,12 @@ a_fitted = popt[0]
 b_fitted = popt[1]
 a_err = numpy.sqrt(pcov[0][0])
 b_err = numpy.sqrt(pcov[1][1])
-print(f"a = {a_fitted} +/- {a_err} ({a_err / a_fitted * 100.0} %)")
-print(f"b = {b_fitted} +/- {b_err} ({b_err / b_fitted * 100.0} %)")
+print(f"a = {a_fitted} +/- {a_err}")
+print(f"b = {b_fitted} +/- {b_err}")
 
 # generate fitted line
 fitted_x = numpy.linspace(mjd_min, mjd_max, 10**3)
-fitted_y = func (fitted_x, a_fitted, b_fitted)
+fitted_y = func(fitted_x, a_fitted, b_fitted)
 
 # objects for plotting
 fig = matplotlib.figure.Figure()
