@@ -41,7 +41,6 @@ with open (input_data, 'r') as fh_read:
             continue
         line = line.strip()
         all_data = line.split()
-        # (datetime_str, mjd_str, mag_str, err_str) = line.split ()
         mjd = float(all_data[1])
         mag = float(all_data[2])
         err = float(all_data[3])
@@ -56,19 +55,13 @@ freq, power = astropy.timeseries.LombScargle(data_mjd, data_mag)\
 
 # wrtie data into output file
 with open (output_data, 'w') as fh_write:
-    header  = f"# result of period search by Lomb-Scargle periodogram\n"
-    header += f"# using astropy.timeseries.LombScargle ()\n"
-    header += f"#\n"
-    header += f"# input file           = '{input_data}'\n"
-    header += f"# output file          = '{output_data}'\n"
+    header  = f"# result of period search by Lomb-Scargle periodogram\n\n"
     header += f"# minimum trial period = {per_min_min} min = {per_min_hr} hr\n"
     header += f"# maximum trial period = {per_max_min} min = {per_max_hr} hr\n"
-    header += f"# samples_per_peak     = {n}\n"
-    header += f"#\n"
+    header += f"# samples_per_peak     = {n}\n\n"
     header += f"# frequency in cycle day^-1, period in day, period in hr, "
-    header += f"period in min, power\n"
-    header += f"#\n"
-    fh_write.write (header)
+    header += f"period in min, power\n\n"
+    fh_write.write(header)
 
     for i in range(len(freq)):
         record = f"{freq[i]:15.8f} {1.0 / freq[i]:15.8f}" \
