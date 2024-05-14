@@ -2,6 +2,16 @@
 # then do source extraction, star-to-star matching, image alignment
 # 06_00 ~ 06_06, 07_00 ~ 07_03
 
+# write by myself
 # source extraction, for both HST and JWST fits
 # 02_02 fits file to cat file
 # 02_04 create png file
+
+# star-to-star matching
+# 06_07 (input 2 cat file)
+# 06_08 (input 2 cat file and 2 fits file, output png)
+
+# image alignment
+# 02_02 fits file to cat file
+# 02_04 create png file
+# 04_06 (input 2 cat file, output alignment result figure)
