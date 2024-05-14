@@ -37,8 +37,8 @@ with open (file_data, 'r') as fh:
 fig = matplotlib.figure.Figure()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
 ax = fig.add_subplot(111)
-ax.set_xlabel ('MJD [day]')
-ax.set_ylabel ('Flux [10^6 e-/sec]')
+ax.set_xlabel('MJD [day]')
+ax.set_ylabel('Flux [10^6 e-/sec]')
 ax.errorbar(data_mjd, data_flux, yerr=data_err, \
              linestyle='None', marker='.', markersize=1, color='blue', \
              ecolor='black', capsize=1, label='photometry of Kepler-2')
