@@ -31,7 +31,7 @@ with open (file_data, 'r') as fh:
         if (line[0] == '#'):
             continue
         line = line.strip()
-        all_data = lint.split()
+        all_data = line.split()
         freq = float(all_data[0])
         per_day = float(all_data[1])
         per_hr = float(all_data[2])
