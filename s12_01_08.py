@@ -52,7 +52,7 @@ with open (input_data, 'r') as fh:
         per_day = float(all_data[1])
         per_hr = float(all_data[2])
         per_min = float(all_data[3])
-        power = float(all_data[5])
+        power = float(all_data[4])
         if (per_day >= per_min_day and per_day <= per_max_day):
             data_freq = numpy.append(data_freq, freq)
             data_per_day = numpy.append(data_per_day, per_day)
