@@ -49,7 +49,7 @@ ax.set_ylabel('Relative Brightness')
 ax.errorbar(data_phase, data_mag, yerr=data_err, \
              linestyle='None', marker='.', markersize=1, color='blue', \
              ecolor='black', capsize=1, \
-             label=f'folded lightcurve of Kepler-2 using {p_best:8.6f} hr')
+             label=f'folded lightcurve of Kepler-2b using {p_best:8.6f} hr')
 ax.errorbar(data_phase + 1.0, data_mag, yerr=data_err, \
              linestyle='None', marker='.', markersize=1, color='blue', \
              ecolor='black', capsize=1)
