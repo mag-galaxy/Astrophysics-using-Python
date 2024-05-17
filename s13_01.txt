@@ -12,6 +12,4 @@
 # 06_08 (input 2 cat file and 2 fits file, output png)
 
 # image alignment
-# 02_02 fits file to cat file
-# 02_04 create png file
 # 04_06 (input 2 cat file, output alignment result figure)
