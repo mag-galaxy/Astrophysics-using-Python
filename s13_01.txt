@@ -8,8 +8,9 @@
 # 02_04 create png file
 
 # star-to-star matching
-# 06_07 (input 2 cat file)
+# 04_05 (input 2 cat file and 2 fits file, output png)
 # 06_08 (input 2 cat file and 2 fits file, output png)
 
 # image alignment
 # 04_06 (input 2 cat file, output alignment result figure)
+# 05_02
