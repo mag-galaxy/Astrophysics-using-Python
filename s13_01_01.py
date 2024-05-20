@@ -47,7 +47,7 @@ if (path_output.exists()):
 with astropy.io.fits.open(file_input) as hdu:
     header = hdu[0].header
     image = hdu[0].data
-    if (header['NAXIS'] == 0):
+    if (header['NAXIS'] == 0):    # read next one
         header = hdu[1].header
         image = hdu[1].data
 
