@@ -7,7 +7,7 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # using argparse
-descr = 'reading .cat file and showing locations of sources'
+descr = 'reading .fits file, .cat file, showing locations of sources'
 parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-c', '--catalogue-file', default='', help='input file name (cat)')
 parser.add_argument('-f', '--input-file', default='', help='input file name (fits)')
