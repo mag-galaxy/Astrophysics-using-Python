@@ -39,7 +39,7 @@ if (path_output.exists()):
 # read catalogue file
 table_source = astropy.table.Table.read(file_cat, format='ascii.commented_header')
 
-# positions of detected sources
+# coordinates of detected sources
 list_x = list(table_source['xcentroid'])
 list_y = list(table_source['ycentroid'])
 
