@@ -32,15 +32,15 @@ npixels = 10
 nlevels = 32
 contrast = 0.001
 
-# making pathlib objects
+# pathlib objects
 path_input = pathlib.Path(file_input)
 path_output = pathlib.Path(file_output)
 
-if not (path_input.exists()):
-    print(f'ERROR: Input file "{file_input}" does not exist.')
+if (!path_input.exists()):
+    print(f'Input file "{file_input}" does not exist!!')
     sys.exit()
-if (path_output.exists ()):
-    print(f'ERROR: Output file "{file_output}" exists.')
+if (path_output.exists()):
+    print(f'Output file "{file_output}" has existed!!')
     sys.exit()
 
 # read FITS file
@@ -57,19 +57,17 @@ sigma_clip = astropy.stats.SigmaClip(sigma=sigma_sky, maxiters=maxiters)
 # sky background estimator
 skybg_estimator = photutils.background.SExtractorBackground()
 
-# making 2-D sky background map for a given image
+# 2D sky background map
 image_skybg = photutils.background.Background2D(image, box_size=(box_size, box_size), \
      filter_size=(filter_size, filter_size), sigma_clip=sigma_clip, bkg_estimator=skybg_estimator)
 
 # sky background subtraction
 image_skysub = image - image_skybg.background
 
-# detection threshold
 detection_threshold = threshold_rms * image_skybg.background_rms
 
-# 2-D Gaussian convolution kernel
-convolution_kernel = photutils.segmentation.make_2dgaussian_kernel \
-    (fwhm=fwhm_kernel, size=array_size)
+# 2D Gaussian convolution kernel
+convolution_kernel = photutils.segmentation.make_2dgaussian_kernel(fwhm=fwhm_kernel, size=array_size)
 
 # convolution
 image_convolved = astropy.convolution.convolve(image_skysub, convolution_kernel)
@@ -78,15 +76,15 @@ image_convolved = astropy.convolution.convolve(image_skysub, convolution_kernel)
 image_segmented = photutils.segmentation.detect_sources(image_convolved, detection_threshold, npixels=npixels)
 
 # de-blending
-image_deblended = photutils.segmentation.deblend_sources \
+image_deblended = photutils.segmentation.deblend_sources\
     (image_convolved, image_segmented, npixels=npixels, nlevels=nlevels, contrast=contrast, progress_bar=False)
 
-# making a source catalogue for detected sources
-catalogue = photutils.segmentation.SourceCatalog \
+# make catalogue
+catalogue = photutils.segmentation.SourceCatalog\
     (data=image_skysub, segment_img=image_segmented, convolved_data=image_convolved)
 
-# making an Astropy table
+# change catalogue to Astropy table
 table_source = catalogue.to_table()
 
-# writing Astropy table into a file
+# write table into output file
 astropy.io.ascii.write(table_source, file_output, format='commented_header')
