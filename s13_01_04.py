@@ -92,7 +92,7 @@ print (f'#  [{transf.params[0][0]:11.6f}, {transf.params[0][1]:11.6f}, {transf.p
 print (f'#  [{transf.params[1][0]:11.6f}, {transf.params[1][1]:11.6f}, {transf.params[1][2]:11.6f}],')
 print (f'#  [{transf.params[2][0]:11.6f}, {transf.params[2][1]:11.6f}, {transf.params[2][2]:11.6f}]')
 print (f'# ]')
-print (f'# list of matched stars')
+print (f'# list of matched stars\n#\n')
 for i in range(len(list_matched_1)):
     print(f'({list_matched_1[i][0]:8.3f}, {list_matched_1[i][1]:8.3f}) on 1st image', \
            f'==> ({list_matched_2[i][0]:8.3f}, {list_matched_2[i][1]:8.3f}) on 2nd image')
