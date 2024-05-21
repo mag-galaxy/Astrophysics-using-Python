@@ -1,78 +1,51 @@
-# image alignment
-# 04_06
-#!/usr/pkg/bin/python3.12
-
-#
-# Time-stamp: <2024/05/11 20:06:36 (UT+8) daisuke>
-#
-
-# importing argparse module
+# star-to-star matching and image alignment
 import argparse
-
-# importing sys module
 import sys
-
-# importing pathlib module
 import pathlib
-
-# importing datetime module
 import datetime
-
-# importing numpy module
 import numpy
-
-# importing astropy module
 import astropy.table
 import astropy.visualization
-
-# importing scikit-image module
 import skimage.transform
-
-# importing astroalign module
 import astroalign
-
-# importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# date/time
-now = datetime.datetime.now ()
+# time
+now = datetime.datetime.now()
 
-# constructing parser object
-descr  = 'aligning image'
-parser = argparse.ArgumentParser (description=descr)
+# using argparse
+descr = 'star-to-star matching and image alignment'
+parser = argparse.ArgumentParser(description=descr)
 
 # adding arguments
-parser.add_argument ('-o', '--file-output', default='', \
-                     help='output figure file')
-parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
-                     help='resolution of output image in DPI (default: 150)')
-parser.add_argument ('catalogue1', nargs=1, help='catalogue file 1')
-parser.add_argument ('catalogue2', nargs=1, help='catalogue file 2')
-parser.add_argument ('fits1', nargs=1, help='FITS file 1')
-parser.add_argument ('fits2', nargs=1, help='FITS file 2')
+parser.add_argument('-o', '--file-output', default='', help='output file (png)')
+parser.add_argument('-n', '--number', type=int, default=50, \
+                     help='maximum number of control sources (default: 50)')
+parser.add_argument('catalogue1', nargs=1, help='.cat file 1')
+parser.add_argument('catalogue2', nargs=1, help='.cat file 2')
+parser.add_argument('fits1', nargs=1, help='.fits file 1')
+parser.add_argument('fits2', nargs=1, help='.fits file 2')
+args = parser.parse_args()
 
-# command-line argument analysis
-args = parser.parse_args ()
-
-# file names
-file_cat1  = args.catalogue1[0]
-file_cat2  = args.catalogue2[0]
+# get value from argument
+file_cat1 = args.catalogue1[0]
+file_cat2 = args.catalogue2[0]
 file_fits1 = args.fits1[0]
 file_fits2 = args.fits2[0]
-file_fig   = args.file_output
-resolution = args.resolution
+file_png = args.file_output
+n_controlpoints = args.number
 
 # making pathlib objects
-path_cat1  = pathlib.Path (file_cat1)
-path_cat2  = pathlib.Path (file_cat2)
-path_fits1 = pathlib.Path (file_fits1)
-path_fits2 = pathlib.Path (file_fits2)
-path_fig   = pathlib.Path (file_fig)
+path_cat1 = pathlib.Path(file_cat1)
+path_cat2 = pathlib.Path(file_cat2)
+path_fits1 = pathlib.Path(file_fits1)
+path_fits2 = pathlib.Path(file_fits2)
+path_png = pathlib.Path(file_png)
 
 # check of output file name
-if not ( (path_fig.suffix == '.eps') or (path_fig.suffix == '.pdf') \
-         or (path_fig.suffix == '.png') or (path_fig.suffix == '.ps') ):
+if not ( (path_png.suffix == '.eps') or (path_png.suffix == '.pdf') \
+         or (path_png.suffix == '.png') or (path_png.suffix == '.ps') ):
     # printing message
     print (f'ERROR:')
     print (f'ERROR: Figure file name must be either EPS, PDF, PNG, or PS.')
@@ -127,10 +100,10 @@ if not (path_fits2.exists ()):
     print (f'ERROR:')
     # exit
     sys.exit ()
-if (path_fig.exists ()):
+if (path_png.exists ()):
     # printing message
     print (f'ERROR:')
-    print (f'ERROR: file "{file_fig}" exists.')
+    print (f'ERROR: file "{file_png}" exists.')
     print (f'ERROR:')
     # exit
     sys.exit ()
@@ -165,7 +138,8 @@ position_2     = numpy.transpose ( (list_source2_x, list_source2_y) )
 
 # finding star-to-star matching
 transf, (list_matched_2, list_matched_1) \
-    = astroalign.find_transform (position_2, position_1)
+    = astroalign.find_transform (position_2, position_1, \
+                                 max_control_points=n_controlpoints)
 
 # transformation
 list_matched_2_aligned \
@@ -254,5 +228,5 @@ for i in range ( len (list_matched_2_aligned) ):
 ax2.set_title ('Second Image')
 
 # writing to a file
-fig.tight_layout ()
-fig.savefig (file_fig, dpi=resolution)
+fig.tight_layout()
+fig.savefig(file_png, dpi=150)
