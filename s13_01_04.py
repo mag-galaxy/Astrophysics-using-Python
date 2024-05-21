@@ -17,10 +17,8 @@ now = datetime.datetime.now()
 # using argparse
 descr = 'star-to-star matching and image alignment'
 parser = argparse.ArgumentParser(description=descr)
-
-# adding arguments
 parser.add_argument('-o', '--file-output', default='', help='output file (png)')
-parser.add_argument('-n', '--number', type=int, default=50, help='max number of control sources')
+parser.add_argument('-n', '--number', type=int, default=50, help='max. number of control sources')
 parser.add_argument('catalogue1', nargs=1, help='.cat file 1')
 parser.add_argument('catalogue2', nargs=1, help='.cat file 2')
 parser.add_argument('fits1', nargs=1, help='.fits file 1')
