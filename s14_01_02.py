@@ -13,7 +13,7 @@ t_interval = 30.0
 n_output = 1000  # number of output data
 
 sim.integrator = 'ias15'
-sim.dt = 0.01
+sim.dt = 0.1
 
 # open output file and write result
 with open (file_out, 'w') as fh:
@@ -39,4 +39,4 @@ with open (file_out, 'w') as fh:
         record = f"{t_yr:12.6f}" \
             + f" {sirA_x:+10.6f} {sirA_y:+10.6f} {sirA_z:+10.6f}" \
             + f" {sirB_x:+10.6f} {sirB_y:+10.6f} {sirB_z:+10.6f}\n"
-        fh.write (record)
+        fh.write(record)
