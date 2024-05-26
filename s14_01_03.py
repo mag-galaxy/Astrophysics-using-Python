@@ -3,16 +3,15 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 file_data = 'sirius.data'  # input file name (data)
-dir_png = 'sirius'  # name of directory for storing PNG files
+dir_png = 'sirius'  # directory for storing png files
 
 # make directory
 path_dir_png = pathlib.Path(dir_png)
-if not (path_dir_png.exists()):
+if (!path_dir_png.exists()):
     path_dir_png.mkdir()
 prefix_fig = 'sirius'
 
-# counter
-i = 0
+i = 0    # counter
 
 # read input file
 with open (file_data, 'r') as fh:
