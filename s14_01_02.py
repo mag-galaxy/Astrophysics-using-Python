@@ -2,7 +2,7 @@ import numpy
 import rebound
 
 file_sim = 'sirius.bin'    # input file name (bin)
-file_out = 'sirius'   # output file name (data)
+file_out = 'sirius.data'   # output file name (data)
 
 sim = rebound.Simulation(file_sim)  # read binary file
 sim.move_to_com()  # move to centre of momentum frame
