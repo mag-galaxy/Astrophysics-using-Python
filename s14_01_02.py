@@ -9,7 +9,7 @@ sim.move_to_com()  # move to centre of momentum frame
 ps = sim.particles
 
 # parameters for simulation
-t_interval = 1.0
+t_interval = 30.0
 n_output = 1000  # number of output data
 
 sim.integrator = 'ias15'
