@@ -1,15 +1,13 @@
 import subprocess
 
-# ffmpeg command
-ffmpeg = 'ffmpeg'
+ffmpeg = 'ffmpeg'    # ffmpeg command
 
 # ffmpeg options
-options_ffmpeg = f'-f image2 -start_number 0 -framerate 30' \
-    + f' -i sirius/sirius_%08d.png' \
-    + f' -an -vcodec libx264 -pix_fmt yuv420p -threads 4'
+options_ffmpeg = f'-f image2 -start_number 0 -framerate 30 -i sirius/sirius_%08d.png'\
+                + f' -an -vcodec libx264 -pix_fmt yuv420p -threads 4'
 
 file_output = 'sirius.mp4'  # output file name (mp4)
 
 # command
-command_ffmpeg = f'{ffmpeg} {options_ffmpeg} {file_output}'
-subprocess.run(command_ffmpeg, shell=True)
+command = f'{ffmpeg} {options_ffmpeg} {file_output}'
+subprocess.run(command, shell=True)
