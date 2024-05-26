@@ -17,7 +17,7 @@ sim.dt = 0.01
 # open output file and write result
 with open (file_out, 'w') as fh:
     header = f"# year from start of simulation, Sirius A (x, y, z), Sirius B (x, y, z)\n"
-    fh.write (header)
+    fh.write(header)
 
     # orbital integration
     for i in range(n_output):
