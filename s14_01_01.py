@@ -1,6 +1,6 @@
 import rebound
 
-file_sim = 'sirius_binary.bin'
+file_sim = 'sirius.bin'
 
 # make simulation object using rebound
 sim = rebound.Simulation()
