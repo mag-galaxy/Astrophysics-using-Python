@@ -2,14 +2,14 @@ import pathlib
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-file_data = 'binary.data'  # input file name (data)
-dir_png = 'sirius_binary'  # name of directory for storing PNG files
+file_data = 'sirius.data'  # input file name (data)
+dir_png = 'sirius'  # name of directory for storing PNG files
 
 # make directory
 path_dir_png = pathlib.Path(dir_png)
 if not (path_dir_png.exists()):
     path_dir_png.mkdir()
-prefix_fig = 'binary'
+prefix_fig = 'sirius'
 
 # counter
 i = 0
@@ -36,7 +36,7 @@ with open (file_data, 'r') as fh:
                  marker='o', markersize=10, color='red', label='Sirius A')
         ax.plot (float(sirB_x), float(sirB_y), linestyle='None', \
                  marker='o', markersize=5, color='blue', label='Sirius B')
-        ax.set_title (f"A binary system at {float(time):6.2f} yr")
+        ax.set_title (f"Sirius A and B binary system at {float(time):6.2f} yr")
         ax.legend (loc='upper right')
         
         fig.savefig (file_fig, dpi=225)
