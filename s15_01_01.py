@@ -8,7 +8,7 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-# settings for Gaia query
+# Gaia query
 astroquery.gaia.Gaia.MAIN_GAIA_TABLE = "gaiadr3.gaia_source"
 astroquery.gaia.Gaia.ROW_LIMIT = -1
 
@@ -20,7 +20,7 @@ parser.add_argument('-o', '--output', help='output file name (.gz)')
 parser.add_argument('-r', '--radius', type=float, help='radius of search in arcmin')
 args = parser.parse_args ()
 
-# get value of variable from argument
+# get value from argument
 target = args.target
 file_output = args.output
 radius_arcmin = args.radius
@@ -30,12 +30,10 @@ radius_deg = radius_arcmin / 60.0
 u_deg = astropy.units.deg
 u_ha     = astropy.units.hourangle
 
-# get coordinate using Simbad
+# find target using Simbad and get its coordinate using Skycoord
 result_simbad = astroquery.simbad.Simbad.query_object(target)
 obj_ra = result_simbad['RA'][0]
 obj_dec = result_simbad['DEC'][0]
-
-# using skycoord of astropy
 coord = astropy.coordinates.SkyCoord(obj_ra, obj_dec, frame='icrs', unit=(u_ha, u_deg))
 ra_deg = coord.ra.deg
 dec_deg = coord.dec.deg
@@ -46,22 +44,18 @@ print(f"target: {target}")
 print(f" RA  = {ra_hms:>14s} = {ra_deg:10.6f} deg")
 print(f" Dec = {dec_dms:>14s} = {dec_deg:+10.6f} deg")
 
-# command for database query
+# command for doing query
 table  = f"gaiadr3.gaia_source"
 field  = f"*"
 point  = f"POINT({ra_deg:8.4f},{dec_deg:8.4f})"
 circle = f"CIRCLE(ra,dec,{radius_deg})"
 query  = f"SELECT {field} from {table} WHERE 1=CONTAINS({point},{circle});"
-
 print (f"SQL query for Gaia database:")
 print (f" {query}")
 
 # sending a job to Gaia database
 job = astroquery.gaia.Gaia.launch_job_async\
       (query, dump_to_file=True, output_format="votable_gzip", output_file=file_output)
-
-# printing query to Gaia database
 print(job)
-
 results = job.get_results()
 print(results)
