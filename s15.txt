@@ -1,0 +1,9 @@
+09_00: download Gaia DR3 data of sky object
+09_01: read VOTable, 
+        extract annual parallax, 
+                radial velocity,
+                proper motion in RA direction,
+                proper motion in Dec direction
+
+09_02: DBSCAN analysis
+09_03: visualize result of cluster
