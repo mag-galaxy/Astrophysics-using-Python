@@ -10,8 +10,8 @@ parser.add_argument('-i', '--input', help='input file name (data)')
 parser.add_argument('-o', '--output', help='output file name (data)')
 parser.add_argument('-d', '--norm-factor-distance', type=float, default=30, help='normalisation factor for distance in pc')
 parser.add_argument('-r', '--norm-factor-rv', type=float, default=2, help='normalisation factor for rv in km/s')
-parser.add_argument('-e', '--eps', type=float, default=1.0, help='parameter eps for DBSCAN analysis')
-parser.add_argument('-n', '--min-samples', type=int, default=30, help='parameter min-samples for DBSCAN analysis')
+parser.add_argument('-e', '--eps', type=float, default=1.0, help='eps for DBSCAN analysis')
+parser.add_argument('-n', '--min-samples', type=int, default=30, help='min-samples for DBSCAN analysis')
 args = parser.parse_args()
 
 # get value from argument
