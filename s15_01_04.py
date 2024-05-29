@@ -17,7 +17,6 @@ file_input = args.input
 file_output = args.output
 target_name = args.target
 
-# making an empty list
 list_clusters = []
 
 # read input data file
@@ -54,8 +53,8 @@ with open (file_input, 'r') as fh:
         data[label].append([source_id, ra, dec, parallax, dist_pc, dist_norm, pmra, pmdec, rv, rv_norm])
 
 # objects for plotting
-fig = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+fig = matplotlib.figure.Figure()
+canvas = matplotlib.backends.backend_agg.FigureCanvasAgg(fig)
 
 # figure 1
 ax1 = fig.add_subplot(221)
