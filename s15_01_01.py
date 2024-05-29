@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-t', '--target', help='target name')
 parser.add_argument('-o', '--output', help='output file name (.gz)')
 parser.add_argument('-r', '--radius', type=float, help='radius of search in arcmin')
-args = parser.parse_args ()
+args = parser.parse_args()
 
 # get value from argument
 target = args.target
