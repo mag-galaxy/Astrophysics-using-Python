@@ -13,8 +13,6 @@ args = parser.parse_args()
 # get value from argument
 file_input = args.input
 file_output = args.output
-
-print(f'Now, reading VOTable file "{file_input}"...')
     
 # read VOTable using astropy
 table = astropy.io.votable.parse_single_table(file_input).to_table()
@@ -33,8 +31,6 @@ data_rv = numpy.array(table['radial_velocity'])
 data_b = numpy.array(table['phot_bp_mean_mag'])
 data_g = numpy.array(table['phot_g_mean_mag'])
 data_r = numpy.array(table['phot_rp_mean_mag'])
-
-print(f'Now, writing data into file "{file_output}"...')
 
 # write necessary data into output file
 with open (file_output, 'w') as fh:
