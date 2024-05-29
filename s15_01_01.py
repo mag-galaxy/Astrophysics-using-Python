@@ -27,7 +27,7 @@ radius_deg = args.radius / 60.0
 
 # units
 u_deg = astropy.units.deg
-u_ha     = astropy.units.hourangle
+u_ha = astropy.units.hourangle
 
 # find target using Simbad and get its coordinate using Skycoord
 result_simbad = astroquery.simbad.Simbad.query_object(target)
@@ -36,12 +36,8 @@ obj_dec = result_simbad['DEC'][0]
 coord = astropy.coordinates.SkyCoord(obj_ra, obj_dec, frame='icrs', unit=(u_ha, u_deg))
 ra_deg = coord.ra.deg
 dec_deg = coord.dec.deg
-ra_hms = coord.ra.to_string(u_ha)
-dec_dms = coord.dec.to_string(u_deg, alwayssign=True)
 
-print(f"target: {target}")
-print(f" RA  = {ra_hms:>14s} = {ra_deg:10.6f} deg")
-print(f" Dec = {dec_dms:>14s} = {dec_deg:+10.6f} deg")
+print(f"target: {target}\n RA  = {ra_deg:10.6f} deg\n Dec = {dec_deg:+10.6f} deg")
 
 # command for doing query
 table  = f"gaiadr3.gaia_source"
@@ -49,12 +45,10 @@ field  = f"*"
 point  = f"POINT({ra_deg:8.4f},{dec_deg:8.4f})"
 circle = f"CIRCLE(ra,dec,{radius_deg})"
 query  = f"SELECT {field} from {table} WHERE 1=CONTAINS({point},{circle});"
-print (f"SQL query for Gaia database:")
-print (f" {query}")
+print (f"SQL query for Gaia database:\n {query}")
 
 # sending a job to Gaia database
 job = astroquery.gaia.Gaia.launch_job_async\
       (query, dump_to_file=True, output_format="votable_gzip", output_file=file_output)
-print(job)
 results = job.get_results()
 print(results)
