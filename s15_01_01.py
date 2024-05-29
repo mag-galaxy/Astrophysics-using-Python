@@ -23,8 +23,7 @@ args = parser.parse_args ()
 # get value from argument
 target = args.target
 file_output = args.output
-radius_arcmin = args.radius
-radius_deg = radius_arcmin / 60.0
+radius_deg = args.radius / 60.0
 
 # units
 u_deg = astropy.units.deg
