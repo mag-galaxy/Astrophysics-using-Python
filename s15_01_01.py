@@ -40,12 +40,11 @@ dec_deg = coord.dec.deg
 print(f"target: {target}\n RA  = {ra_deg:10.6f} deg\n Dec = {dec_deg:+10.6f} deg")
 
 # command for doing query
-table  = f"gaiadr3.gaia_source"
-field  = f"*"
-point  = f"POINT({ra_deg:8.4f},{dec_deg:8.4f})"
+table = f"gaiadr3.gaia_source"
+point = f"POINT({ra_deg:8.4f},{dec_deg:8.4f})"
 circle = f"CIRCLE(ra,dec,{radius_deg})"
-query  = f"SELECT {field} from {table} WHERE 1=CONTAINS({point},{circle});"
-print (f"SQL query for Gaia database:\n {query}")
+query = f"SELECT * from {table} WHERE 1=CONTAINS({point},{circle});"
+print(f"SQL query for Gaia database:\n {query}")
 
 # sending a job to Gaia database
 job = astroquery.gaia.Gaia.launch_job_async\
