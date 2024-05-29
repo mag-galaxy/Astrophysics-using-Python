@@ -4,22 +4,22 @@ import numpy
 import astropy.io.votable
 
 # use argparse
-descr  = f'reading a VOTable file and writing data into a file'
+descr  = f'read VOTable file and write data into output file'
 parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-i', '--input', help='input VOTable file name')
 parser.add_argument('-o', '--output', help='output file name')
 args = parser.parse_args()
 
 # get value from argument
-file_votable = args.input
+file_input = args.input
 file_output = args.output
 
-print(f'Now, reading VOTable file "{file_votable}"...')
+print(f'Now, reading VOTable file "{file_input}"...')
     
 # read VOTable using astropy
-table = astropy.io.votable.parse_single_table(file_votable).to_table()
+table = astropy.io.votable.parse_single_table(file_input).to_table()
 
-print(f'Finished reading VOTable file "{file_votable}"!')
+print(f'Finished reading VOTable file "{file_input}"!')
 
 # extract necessary data from Gaia catalogue
 data_id = numpy.array(table['SOURCE_ID'])
