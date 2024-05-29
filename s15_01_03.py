@@ -4,7 +4,7 @@ import numpy
 import sklearn.cluster
 
 # use argparse
-descr = 'finding star cluster members using parallax, rv, pmra, and pmdec'
+descr = 'do DBSCAN analysis using parallax, rv, pmra, and pmdec'
 parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-i', '--input', help='input file name (data)')
 parser.add_argument('-o', '--output', help='output file name (data)')
