@@ -1,4 +1,4 @@
-# download Gaia DR3 data of NGC 2232
+# download Gaia DR3 data of given object
 import argparse
 import astropy.units
 import astropy.coordinates
