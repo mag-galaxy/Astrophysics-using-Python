@@ -30,6 +30,9 @@ data_parallax_snr = numpy.array(table['parallax_over_error'])
 data_pmra = numpy.array(table['pmra'])
 data_pmdec = numpy.array(table['pmdec'])
 data_rv = numpy.array(table['radial_velocity'])
+data_b = numpy.array(table['phot_bp_mean_mag'])
+data_g = numpy.array(table['phot_g_mean_mag'])
+data_r = numpy.array(table['phot_rp_mean_mag'])
 
 print(f'Now, writing data into file "{file_output}"...')
 
@@ -58,7 +61,7 @@ with open (file_output, 'w') as fh:
         if (data_parallax_snr[i] < 10.0):
             continue
         # rejecting data if b or g or r band magnitude is NaN
-        if (numpy.isnan (data_b[i]) or numpy.isnan(data_g[i]) or numpy.isnan(data_r[i])):
+        if (numpy.isnan(data_b[i]) or numpy.isnan(data_g[i]) or numpy.isnan(data_r[i])):
             continue
         record = f"{data_id[i]:19d} {data_ra[i]:12.8f} {data_dec[i]:12.8f}" \
             + f" {data_parallax[i]:8.3f} {data_pmra[i]:8.3f} {data_pmdec[i]:8.3f}" \
