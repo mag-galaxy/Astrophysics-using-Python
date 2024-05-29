@@ -36,14 +36,14 @@ print(f'Now, writing data into file "{file_output}"...')
 with open (file_output, 'w') as fh:
     header = f'#\n' \
         + f'# Gaia DR3 data\n' \
-        + f'#  data format of this file\n\n' \
+        + f'#  data format of this file\n' \
         + f'#   column 01 : source ID\n' \
         + f'#   column 02 : RA in deg\n' \
         + f'#   column 03 : Dec in deg\n' \
         + f'#   column 04 : parallax in mas\n' \
         + f'#   column 05 : proper motion in RA direction in mas/yr\n' \
         + f'#   column 06 : proper motion in Dec direction in mas/yr\n' \
-        + f'#   column 07 : radial velocity in km/s\n\n' \
+        + f'#   column 07 : radial velocity in km/s\n'
     fh.write(header)
     
     for i in range(len(data_id)):
