@@ -8,8 +8,6 @@ descr = 'do DBSCAN analysis using parallax, rv, pmra, and pmdec'
 parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-i', '--input', help='input file name (data)')
 parser.add_argument('-o', '--output', help='output file name (data)')
-parser.add_argument('-d', '--norm-factor-distance', type=float, default=30, help='normalisation factor for distance in pc')
-parser.add_argument('-r', '--norm-factor-rv', type=float, default=2, help='normalisation factor for rv in km/s')
 parser.add_argument('-e', '--eps', type=float, default=1.0, help='eps for DBSCAN analysis')
 parser.add_argument('-n', '--min-samples', type=int, default=30, help='min-samples for DBSCAN analysis')
 args = parser.parse_args()
@@ -17,10 +15,10 @@ args = parser.parse_args()
 # get value from argument
 file_input = args.input
 file_output = args.output
-normfactor_dist = args.norm_factor_distance
-normfactor_rv = args.norm_factor_rv
 eps = args.eps
 min_samples = args.min_samples
+normfactor_dist = 30
+normfactor_rv = 2
 
 # empty lists for storing data
 list_id = []
@@ -34,8 +32,6 @@ list_pmdec = []
 list_rv = []
 list_rv_norm = []
 list_stars = []
-
-print(f'Now, reading Gaia DR3 data file...')
 
 # read input file
 with open (file_input, 'r') as fh:
@@ -52,9 +48,9 @@ with open (file_input, 'r') as fh:
         pmra = float(pmra)
         pmdec = float(pmdec)
         rv = float(rv)
-        dist_pc = 1000.0 / parallax        # calculation of distance in pc
-        dist_norm = dist_pc / normfactor_dist        # normalisation of distance in pc
-        rv_norm = rv / normfactor_rv        # normalisation of radial velocity in km/s
+        dist_pc = 1000.0 / parallax             # calculation of distance in pc
+        dist_norm = dist_pc / normfactor_dist   # normalisation of distance in pc
+        rv_norm = rv / normfactor_rv            # normalisation of radial velocity in km/s
         list_id.append(source_id)
         list_ra.append(ra)
         list_dec.append(dec)
@@ -65,8 +61,6 @@ with open (file_input, 'r') as fh:
         list_pmdec.append(pmdec)
         list_rv.append(rv)
         list_rv_norm.append(rv_norm)
-       
-print(f'Now, constructing Numpy array...')
 
 # change into numpy arrays
 array_id = numpy.array(list_id)
@@ -80,16 +74,10 @@ array_pmdec = numpy.array(list_pmdec)
 array_rv = numpy.array(list_rv)
 array_rv_norm = numpy.array(list_rv_norm)
 
-# numpy array for DBSCAN analysis
-stars = numpy.stack([array_dist_norm, array_pmra, array_pmdec, array_rv_norm]).transpose()
-
-print(f'Now, doing DBSCAN analysis...')
-
 # clustering analysis using DBSCAN
+stars = numpy.stack([array_dist_norm, array_pmra, array_pmdec, array_rv_norm]).transpose()
 result_dbscan = sklearn.cluster.DBSCAN(eps=eps, min_samples=min_samples, n_jobs=-1).fit(stars)
 labels = result_dbscan.labels_
-
-print(f'Now, writing results into output file...')
 
 # write clustring result into output file
 with open (file_output, 'w') as fh:
@@ -115,4 +103,4 @@ with open (file_output, 'w') as fh:
             + f" {array_pmra[i]:8.3f} {array_pmdec[i]:8.3f} {array_rv[i]:12.6f}" \
             + f" {array_rv_norm[i]:12.6f} {labels[i]}\n"
         fh.write(record)
-    print(f'Finished writing results into output file!')
+print(f'Finished writing results into output file!')
