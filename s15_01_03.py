@@ -37,7 +37,7 @@ list_stars = []
 
 print(f'Now, reading Gaia DR3 data file...')
 
-# read input file for data
+# read input file
 with open (file_input, 'r') as fh:
     for line in fh:
         if (line[0] == '#'):
@@ -66,7 +66,6 @@ with open (file_input, 'r') as fh:
         list_rv.append(rv)
         list_rv_norm.append(rv_norm)
        
-print(f'Finished reading Gaia DR3 data file!')
 print(f'Now, constructing Numpy array...')
 
 # change into numpy arrays
@@ -81,17 +80,15 @@ array_pmdec = numpy.array(list_pmdec)
 array_rv = numpy.array(list_rv)
 array_rv_norm = numpy.array(list_rv_norm)
 
-# constructing a Numpy array for DBSCAN analysis
+# numpy array for DBSCAN analysis
 stars = numpy.stack([array_dist_norm, array_pmra, array_pmdec, array_rv_norm]).transpose()
 
-print(f'Finished constructing Numpy array!')
 print(f'Now, doing DBSCAN analysis...')
 
 # clustering analysis using DBSCAN
 result_dbscan = sklearn.cluster.DBSCAN(eps=eps, min_samples=min_samples, n_jobs=-1).fit(stars)
 labels = result_dbscan.labels_
 
-print(f'Finished doing DBSCAN analysis!')
 print(f'Now, writing results into output file...')
 
 # write clustring result into output file
