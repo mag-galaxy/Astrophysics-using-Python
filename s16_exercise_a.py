@@ -21,9 +21,6 @@ height = float(args.height)
 # units
 m = astropy.units.m
 
-# solar system
-astropy.coordinates.solar_system_ephemeris('de440')
-
 # time object
 time_str = f'{date} 00:00:00'
 UTC = astropy.time.Time(time_str, format='iso', scale='utc')
