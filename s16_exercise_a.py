@@ -27,7 +27,7 @@ obs_time = astropy.time.Time(time_str, format='iso', scale='utc')
 
 # observer
 height = height * m
-observer = astroplan.Observer(longitude=long, latitude=lat, elevation=height, name='observer', timezone='obs_time')
+observer = astroplan.Observer(longitude=long, latitude=lat, elevation=height, name='observer')
 
 # sun rise time
 sun_rise = observer.sun_rise_time(obs_time, which='next')
