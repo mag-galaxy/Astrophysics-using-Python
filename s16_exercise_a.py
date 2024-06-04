@@ -23,28 +23,28 @@ m = astropy.units.m
 
 # time object
 time_str = f'{date} 00:00:00'
-UTC = astropy.time.Time(time_str, format='iso', scale='utc')
+obs_time = astropy.time.Time(time_str)
 
 # observer
 height = height * m
-observer = astroplan.Observer(longitude=long, latitude=lat, elevation=height, name='observer', timezone='UTC')
+observer = astroplan.Observer(longitude=long, latitude=lat, elevation=height, name='observer', timezone='obs_time')
 
 # sun rise time
-sun_rise = observer.sun_rise_time(UTC, which='next')
-print(f'sun rise time of next day: {sun_rise}')
+sun_rise = observer.sun_rise_time(obs_time, which='next')
+print("ISO: {0.iso}, JD: {0.jd}".format(sun_rise))
 
 # sun set time
-sun_set = observer.sun_rise_time(UTC, which='nearset')
-print(f'sun set time of today: {sun_set}')
+sun_set = observer.sun_rise_time(obs_time, which='nearset')
+print("ISO: {0.iso}, JD: {0.jd}".format(sun_set))
 
 # moon rise time
-moon_rise = observer.moon_rise_time(UTC, which='nearset')
-print(f'moon rise time: {moon_rise}')
+moon_rise = observer.moon_rise_time(obs_time, which='nearset')
+print("ISO: {0.iso}, JD: {0.jd}".format(moon_rise))
 
 # moon set time
-moon_set = observer.moon_set_time(UTC, which='nearset')
-print(f'moon set time: {moon_set}')
+moon_set = observer.moon_set_time(obs_time, which='nearset')
+print("ISO: {0.iso}, JD: {0.jd}".format(moon_set))
 
 # moon phase
-moon_phase = astroplan.moon_phase_angle(UTC)
+moon_phase = astroplan.moon_phase_angle(obs_time)
 print(f'moon phase: {moon_phase}')
