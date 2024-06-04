@@ -31,19 +31,19 @@ observer = astroplan.Observer(longitude=long, latitude=lat, elevation=height, na
 
 # sun rise time
 sun_rise = observer.sun_rise_time(obs_time, which='next')
-print("ISO: {0.iso}, JD: {0.jd}".format(sun_rise))
+print("sun rise time: {0.iso}".format(sun_rise))
 
 # sun set time
-sun_set = observer.sun_rise_time(obs_time, which='nearest')
-print("ISO: {0.iso}, JD: {0.jd}".format(sun_set))
+sun_set = observer.sun_set_time(obs_time, which='nearest')
+print("sun set time: {0.iso}".format(sun_set))
 
 # moon rise time
 moon_rise = observer.moon_rise_time(obs_time, which='nearest')
-print("ISO: {0.iso}, JD: {0.jd}".format(moon_rise))
+print("moon rise time: {0.iso}".format(moon_rise))
 
 # moon set time
 moon_set = observer.moon_set_time(obs_time, which='nearest')
-print("ISO: {0.iso}, JD: {0.jd}".format(moon_set))
+print("moon set time: {0.iso}".format(moon_set))
 
 # moon phase
 moon_phase = astroplan.moon_phase_angle(obs_time)
