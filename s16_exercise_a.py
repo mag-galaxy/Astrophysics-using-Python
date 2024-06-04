@@ -8,7 +8,7 @@ descr = 'show information for astronomical observation'
 parser = argparse.ArgumentParser(description=descr)
 parser.add_argument('-l1', '--long', help='longitude of observing site (dms)')
 parser.add_argument('-l2', '--lat', help='latitude of observing site (dms)')
-parser.add_argument('-h', '--height', help='height of observing site (m)')
+parser.add_argument('-e', '--height', help='height of observing site (m)')
 parser.add_argument('-d', '--date', help='observing date (yyyy-mm-dd)')
 args = parser.parse_args()
 
