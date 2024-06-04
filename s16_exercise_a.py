@@ -23,7 +23,7 @@ m = astropy.units.m
 
 # time object
 time_str = f'{date} 00:00:00'
-obs_time = astropy.time.Time(time_str)
+obs_time = astropy.time.Time(time_str, format='iso', scale='utc')
 
 # observer
 height = height * m
