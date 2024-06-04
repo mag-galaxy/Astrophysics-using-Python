@@ -34,15 +34,15 @@ sun_rise = observer.sun_rise_time(obs_time, which='next')
 print("ISO: {0.iso}, JD: {0.jd}".format(sun_rise))
 
 # sun set time
-sun_set = observer.sun_rise_time(obs_time, which='nearset')
+sun_set = observer.sun_rise_time(obs_time, which='nearest')
 print("ISO: {0.iso}, JD: {0.jd}".format(sun_set))
 
 # moon rise time
-moon_rise = observer.moon_rise_time(obs_time, which='nearset')
+moon_rise = observer.moon_rise_time(obs_time, which='nearest')
 print("ISO: {0.iso}, JD: {0.jd}".format(moon_rise))
 
 # moon set time
-moon_set = observer.moon_set_time(obs_time, which='nearset')
+moon_set = observer.moon_set_time(obs_time, which='nearest')
 print("ISO: {0.iso}, JD: {0.jd}".format(moon_set))
 
 # moon phase
