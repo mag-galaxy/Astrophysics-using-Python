@@ -1,3 +1,3 @@
-# Astrophysics-using-Python
+# Astrophysics using Python
 NCU
 112-2 
