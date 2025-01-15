@@ -1,5 +1,5 @@
 # Doing Astrophysics using Python
-NCU 112-2 Course: Doing Astrophysics using Python Course: PH3066
+NCU 2024 Spring H3066 Doing Astrophysics using Python
 
 + class practice
 
